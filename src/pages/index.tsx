@@ -7,6 +7,7 @@ import {Carousel} from '@/components/carousel';
 import {About} from '@/modules/homePage/components/About';
 import {Stats} from '@/modules/homePage/components/Stats';
 import {Specialties} from '@/modules/homePage/components/Specialties';
+import {MakeReservationSection} from '@/modules/homePage/components/MakeReservationSection';
 
 //constants
 import {HOME_PAGE_CAROUSEL_CARDS, STATS} from '@/modules/homePage/constants';
@@ -26,6 +27,7 @@ export default function Home() {
         <About />
         <Stats stats={STATS} />
         <Specialties />
+        <MakeReservationSection />
       </Box>
     </>
   );

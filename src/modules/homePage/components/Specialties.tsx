@@ -22,7 +22,7 @@ const Specialties = ({}: Props): JSX.Element => {
       <Box
         maxWidth={1100}
         mx="auto"
-        my={12}
+        mt={12}
         py={12}
         px={4}
         display="flex"
@@ -46,7 +46,7 @@ const Specialties = ({}: Props): JSX.Element => {
           </Box>
         </Box>
 
-        <Box display="grid" gridTemplateColumns="repeat(2, 1fr)">
+        <Box display="grid" gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}>
           {FOOD_ITEMS.map((foodItem) => (
             <ItemCard key={foodItem.id} item={foodItem} />
           ))}

@@ -31,6 +31,18 @@ export const THEME = extendTheme({
           border: '1px solid',
           borderColor: 'outline.500',
           color: 'outline.500',
+          borderRadius: '0px',
+        },
+        solid: {
+          borderRadius: '0px',
+          border: '1px solid',
+          borderColor: 'transparent',
+          _hover: {
+            color: 'brand.500',
+            backgroundColor: 'transparent',
+            border: '1px solid',
+            borderColor: 'outline.500',
+          },
         },
       },
     },
@@ -42,6 +54,16 @@ export const THEME = extendTheme({
               boxShadow: '0 0 0 1px #10B981', // remove the default focus box shadow
               borderColor: 'outline.500', // set the focus border color to blue.500
             },
+            borderRadius: '0px',
+          },
+        },
+      },
+    },
+    Select: {
+      variants: {
+        outline: {
+          field: {
+            borderRadius: '0px',
           },
         },
       },

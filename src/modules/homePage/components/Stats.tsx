@@ -33,8 +33,8 @@ const Stats = ({stats}: Props): JSX.Element => {
         gap={8}
       >
         {stats.map((stat) => (
-          <Box key={stat.label}>
-            <Box color="brand.500" fontWeight="bold" fontSize="3xl" textAlign="center">
+          <Box key={stat.label} textAlign="center">
+            <Box color="brand.500" fontWeight="bold" fontSize="3xl">
               {stat.value}
             </Box>
             <Box color="gray.600" fontSize="sm" textTransform="uppercase">
