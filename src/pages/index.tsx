@@ -3,6 +3,10 @@ import Head from 'next/head';
 
 //components
 import {Box} from '@chakra-ui/react';
+import {Carousel} from '@/components/carousel';
+
+//constants
+import {HOME_PAGE_CAROUSEL_CARDS} from '@/modules/homePage/constants';
 
 export default function Home() {
   return (
@@ -14,9 +18,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="">
-        <Box backgroundColor="blackAlpha.400" height="100vh"></Box>
-      </main>
+      <Box as="main" height="100vh">
+        <Carousel cards={HOME_PAGE_CAROUSEL_CARDS} />
+      </Box>
     </>
   );
 }

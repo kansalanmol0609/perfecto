@@ -24,6 +24,8 @@ const Desktop = (): JSX.Element => {
       borderBottomColor="blackAlpha.200"
       px={4}
       gap={4}
+      zIndex={9999}
+      backgroundColor="blackAlpha.500"
     >
       <Box
         maxWidth={1100}
