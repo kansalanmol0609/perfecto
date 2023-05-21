@@ -4,6 +4,7 @@ import Head from 'next/head';
 //components
 import {Box} from '@chakra-ui/react';
 import {Carousel} from '@/components/carousel';
+import {About} from '@/modules/homePage/components/About';
 
 //constants
 import {HOME_PAGE_CAROUSEL_CARDS} from '@/modules/homePage/constants';
@@ -20,6 +21,7 @@ export default function Home() {
 
       <Box as="main" height="100vh">
         <Carousel cards={HOME_PAGE_CAROUSEL_CARDS} />
+        <About />
       </Box>
     </>
   );
