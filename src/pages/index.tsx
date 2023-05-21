@@ -5,9 +5,11 @@ import Head from 'next/head';
 import {Box} from '@chakra-ui/react';
 import {Carousel} from '@/components/carousel';
 import {About} from '@/modules/homePage/components/About';
+import {Stats} from '@/modules/homePage/components/Stats';
+import {Specialties} from '@/modules/homePage/components/Specialties';
 
 //constants
-import {HOME_PAGE_CAROUSEL_CARDS} from '@/modules/homePage/constants';
+import {HOME_PAGE_CAROUSEL_CARDS, STATS} from '@/modules/homePage/constants';
 
 export default function Home() {
   return (
@@ -22,6 +24,8 @@ export default function Home() {
       <Box as="main" height="100vh">
         <Carousel cards={HOME_PAGE_CAROUSEL_CARDS} />
         <About />
+        <Stats stats={STATS} />
+        <Specialties />
       </Box>
     </>
   );
