@@ -1,5 +1,5 @@
 //types
-import {CarouselCard} from '@/components/carousel/types';
+import {CarouselCard} from '@/components/carouselSection/types';
 import {Blog} from '@/types/Blog';
 import {FoodItem} from '@/types/FoodItem';
 

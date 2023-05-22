@@ -12,7 +12,7 @@ const greatVibesFont = Great_Vibes({
   weight: ['400'],
 });
 
-const About = (): JSX.Element => {
+const AboutSection = (): JSX.Element => {
   return (
     <Box
       maxWidth={1100}
@@ -75,6 +75,5 @@ const About = (): JSX.Element => {
   );
 };
 
-const MemoizedAbout = memo(About);
-
-export {MemoizedAbout as About};
+const MemoizedAboutSection = memo(AboutSection);
+export {MemoizedAboutSection as AboutSection};

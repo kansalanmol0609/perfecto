@@ -3,12 +3,12 @@ import Head from 'next/head';
 
 //components
 import {Box} from '@chakra-ui/react';
-import {Carousel} from '@/components/carousel';
-import {About} from '@/modules/homePage/components/About';
-import {Stats} from '@/modules/homePage/components/Stats';
-import {Specialties} from '@/modules/homePage/components/Specialties';
-import {MakeReservationSection} from '@/modules/homePage/components/MakeReservationSection';
-import {RecentBlogPostsSection} from '@/modules/homePage/components/RecentBlogPostsSection';
+import {CarouselSection} from '@/components/carouselSection';
+import {AboutSection} from '@/modules/homePage/sections/AboutSection';
+import {StatsSection} from '@/modules/homePage/sections/StatsSection';
+import {SpecialtiesSection} from '@/modules/homePage/sections/SpecialtiesSection';
+import {MakeReservationSection} from '@/modules/homePage/sections/MakeReservationSection';
+import {RecentBlogPostsSection} from '@/modules/homePage/sections/RecentBlogPostsSection';
 
 //constants
 import {HOME_PAGE_CAROUSEL_CARDS, STATS} from '@/modules/homePage/constants';
@@ -24,10 +24,10 @@ export default function Home() {
       </Head>
 
       <Box as="main" height="100vh">
-        <Carousel cards={HOME_PAGE_CAROUSEL_CARDS} />
-        <About />
-        <Stats stats={STATS} />
-        <Specialties />
+        <CarouselSection cards={HOME_PAGE_CAROUSEL_CARDS} />
+        <AboutSection />
+        <StatsSection stats={STATS} />
+        <SpecialtiesSection />
         <MakeReservationSection />
         <RecentBlogPostsSection />
       </Box>

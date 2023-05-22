@@ -16,7 +16,7 @@ const greatVibesFont = Great_Vibes({
 
 type Props = {};
 
-const Specialties = ({}: Props): JSX.Element => {
+const SpecialtiesSection = ({}: Props): JSX.Element => {
   return (
     <Box backgroundColor="brand.300">
       <Box
@@ -56,5 +56,5 @@ const Specialties = ({}: Props): JSX.Element => {
   );
 };
 
-const MemoizedSpecialties = memo(Specialties);
-export {MemoizedSpecialties as Specialties};
+const MemoizedSpecialtiesSection = memo(SpecialtiesSection);
+export {MemoizedSpecialtiesSection as SpecialtiesSection};

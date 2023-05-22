@@ -23,7 +23,7 @@ type Props = {
   cards: Array<CarouselCard>;
 };
 
-const Carousel = ({cards}: Props): JSX.Element => {
+const CarouselSection = ({cards}: Props): JSX.Element => {
   const [slider, setSlider] = useState<Slider | null>(null);
 
   const goToPreviousSlide = useCallback(() => slider?.slickPrev(), [slider]);
@@ -114,5 +114,5 @@ const Carousel = ({cards}: Props): JSX.Element => {
   );
 };
 
-const MemoizedCarousel = memo(Carousel);
-export {MemoizedCarousel as Carousel};
+const MemoizedCarouselSection = memo(CarouselSection);
+export {MemoizedCarouselSection as CarouselSection};

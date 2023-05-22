@@ -11,7 +11,7 @@ type Props = {
   }>;
 };
 
-const Stats = ({stats}: Props): JSX.Element => {
+const StatsSection = ({stats}: Props): JSX.Element => {
   return (
     <Box
       maxWidth={1100}
@@ -53,5 +53,5 @@ const Stats = ({stats}: Props): JSX.Element => {
   );
 };
 
-const MemoizedStats = memo(Stats);
-export {MemoizedStats as Stats};
+const MemoizedStatsSection = memo(StatsSection);
+export {MemoizedStatsSection as StatsSection};
