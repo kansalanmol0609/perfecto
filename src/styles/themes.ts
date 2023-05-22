@@ -50,11 +50,38 @@ export const THEME = extendTheme({
       variants: {
         outline: {
           field: {
+            borderRadius: '0px',
             _focus: {
-              boxShadow: '0 0 0 1px #10B981', // remove the default focus box shadow
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
               borderColor: 'outline.500', // set the focus border color to blue.500
             },
+            _hover: {
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
+              borderColor: 'outline.500',
+            },
+          },
+        },
+        filled: {
+          field: {
             borderRadius: '0px',
+            backgroundColor: 'whiteAlpha.300',
+            textAlign: 'center',
+            color: 'whiteAlpha.800',
+            border: '0px',
+            _placeholder: {
+              color: 'whiteAlpha.800',
+              textAlign: 'center',
+            },
+            _focus: {
+              backgroundColor: 'whiteAlpha.300',
+              boxShadow: '0 0 0 0',
+              border: '0px',
+            },
+            _hover: {
+              backgroundColor: 'whiteAlpha.300',
+              boxShadow: '0 0 0 0',
+              border: '0px',
+            },
           },
         },
       },
@@ -64,6 +91,14 @@ export const THEME = extendTheme({
         outline: {
           field: {
             borderRadius: '0px',
+            _hover: {
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
+              borderColor: 'outline.500',
+            },
+            _focus: {
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
+              borderColor: 'outline.500', // set the focus border color to blue.500
+            },
           },
         },
       },

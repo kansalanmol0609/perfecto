@@ -29,27 +29,27 @@ const MakeReservationForm = (): JSX.Element => {
         <Box display="grid" gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}} gap={4} py={4}>
           <FormControl>
             <FormLabel>Your Name</FormLabel>
-            <Input placeholder="Your Name" type="text" />
+            <Input placeholder="Your Name" type="text" variant="outline" />
           </FormControl>
 
           <FormControl>
             <FormLabel>Email</FormLabel>
-            <Input placeholder="Email" type="email" />
+            <Input placeholder="Email" type="email" variant="outline" />
           </FormControl>
 
           <FormControl>
             <FormLabel>Phone</FormLabel>
-            <Input placeholder="Phone" type="number" />
+            <Input placeholder="Phone" type="number" variant="outline" />
           </FormControl>
 
           <FormControl>
             <FormLabel>Date</FormLabel>
-            <Input placeholder="Date" type="date" />
+            <Input placeholder="Date" type="date" variant="outline" />
           </FormControl>
 
           <FormControl>
             <FormLabel>Time</FormLabel>
-            <Input placeholder="Time" type="time" />
+            <Input placeholder="Time" type="time" variant="outline" />
           </FormControl>
 
           <FormControl>

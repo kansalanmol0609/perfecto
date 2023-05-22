@@ -23,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box as="main" height="100vh">
+      <Box as="main">
         <CarouselSection cards={HOME_PAGE_CAROUSEL_CARDS} />
         <AboutSection />
         <StatsSection stats={STATS} />

@@ -6,6 +6,7 @@ import {Box, ChakraProvider} from '@chakra-ui/react';
 
 //components
 import {Navbar} from '@/components/navbar';
+import {Footer} from '@/components/Footer';
 
 //constants
 import {THEME} from '@/styles/themes';
@@ -25,10 +26,11 @@ const poppins = Poppins({
 export default function App({Component, pageProps}: AppProps) {
   return (
     <ChakraProvider theme={THEME}>
-      <Box display="flex" flexDirection="column" height="100vh" className={poppins.className}>
+      <Box className={poppins.className}>
         <Navbar />
-        <Box flexGrow={1}>
+        <Box display="flex" flexDirection="column" height="100vh">
           <Component {...pageProps} />
+          <Footer />
         </Box>
       </Box>
     </ChakraProvider>
