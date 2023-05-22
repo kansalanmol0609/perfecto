@@ -1,5 +1,6 @@
 //types
 import {CarouselCard} from '@/components/carousel/types';
+import {Blog} from '@/types/Blog';
 import {FoodItem} from '@/types/FoodItem';
 
 export const HOME_PAGE_CAROUSEL_CARDS: Array<CarouselCard> = [
@@ -111,5 +112,35 @@ export const FOOD_ITEMS: Array<FoodItem> = [
     },
     primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-6.jpg.webp',
     secondaryImagesUrls: [],
+  },
+];
+
+export const BLOGS: Array<Blog> = [
+  {
+    id: '576382tdguyhd9823d',
+    userId: '',
+    thumbnailUrl: 'https://preview.colorlib.com/theme/feliciano/images/image_1.jpg.webp',
+    title: 'Taste the delicious foods in Asia',
+    htmlContent: '',
+    createdOn: 364832409342,
+    comments: [],
+  },
+  {
+    id: '343278rdg28fgg283',
+    userId: '',
+    thumbnailUrl: 'https://preview.colorlib.com/theme/feliciano/images/image_2.jpg.webp',
+    title: 'Taste the delicious foods in Asia',
+    htmlContent: '',
+    createdOn: 364832409342,
+    comments: [],
+  },
+  {
+    id: '328764fg84g748f3f',
+    userId: '',
+    thumbnailUrl: 'https://preview.colorlib.com/theme/feliciano/images/image_3.jpg.webp',
+    title: 'Taste the delicious foods in Asia',
+    htmlContent: '',
+    createdOn: 364832409342,
+    comments: [],
   },
 ];

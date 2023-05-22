@@ -8,6 +8,7 @@ import {About} from '@/modules/homePage/components/About';
 import {Stats} from '@/modules/homePage/components/Stats';
 import {Specialties} from '@/modules/homePage/components/Specialties';
 import {MakeReservationSection} from '@/modules/homePage/components/MakeReservationSection';
+import {RecentBlogPostsSection} from '@/modules/homePage/components/RecentBlogPostsSection';
 
 //constants
 import {HOME_PAGE_CAROUSEL_CARDS, STATS} from '@/modules/homePage/constants';
@@ -28,6 +29,7 @@ export default function Home() {
         <Stats stats={STATS} />
         <Specialties />
         <MakeReservationSection />
+        <RecentBlogPostsSection />
       </Box>
     </>
   );
