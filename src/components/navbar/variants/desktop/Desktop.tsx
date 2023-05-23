@@ -1,5 +1,5 @@
 //libs
-import {memo} from 'react';
+import {memo, useCallback} from 'react';
 import NextLink from 'next/link';
 
 //components
@@ -8,12 +8,24 @@ import {Link} from '@chakra-ui/react';
 
 //hooks
 import {useRouter} from 'next/router';
+import {useGlobalModalContext, MODAL_TYPES} from '@/contexts/globalModalContext';
 
 //constants
 import {NAVBAR_HEIGHT, ROUTES} from '../../constants';
 
 const Desktop = (): JSX.Element => {
   const {pathname} = useRouter();
+
+  const {openModal} = useGlobalModalContext();
+
+  const openMakeReservationModal = useCallback(
+    () =>
+      openModal({
+        type: MODAL_TYPES.MAKE_RESERVATION_MODAL,
+        payload: {props: {}},
+      }),
+    [openModal],
+  );
 
   return (
     <Box
@@ -24,7 +36,7 @@ const Desktop = (): JSX.Element => {
       borderBottomColor="blackAlpha.200"
       px={4}
       gap={4}
-      zIndex={9999}
+      zIndex={999}
       backgroundColor="blackAlpha.500"
     >
       <Box
@@ -53,7 +65,7 @@ const Desktop = (): JSX.Element => {
             </NextLink>
           ))}
 
-          <Button colorScheme="brand" fontSize="xs">
+          <Button colorScheme="brand" fontSize="xs" onClick={openMakeReservationModal}>
             Book a Table
           </Button>
         </Box>

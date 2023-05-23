@@ -32,6 +32,15 @@ export const THEME = extendTheme({
           borderColor: 'outline.500',
           color: 'outline.500',
           borderRadius: '0px',
+          _hover: {
+            boxShadow: '0 0 0 1px  #AA8F66',
+          },
+          _focus: {
+            boxShadow: '0 0 0 1px  #AA8F66',
+          },
+          _active: {
+            backgroundColor: 'transparent',
+          },
         },
         solid: {
           borderRadius: '0px',
@@ -42,6 +51,10 @@ export const THEME = extendTheme({
             backgroundColor: 'transparent',
             border: '1px solid',
             borderColor: 'outline.500',
+            boxShadow: '0 0 0 1px #AA8F66',
+          },
+          _focus: {
+            boxShadow: '0 0 0 1px  #AA8F66',
           },
         },
       },
@@ -100,6 +113,18 @@ export const THEME = extendTheme({
               borderColor: 'outline.500', // set the focus border color to blue.500
             },
           },
+        },
+      },
+    },
+
+    Modal: {
+      baseStyle: {
+        dialog: {
+          borderRadius: '0',
+        },
+        overlay: {
+          backdropFilter: 'blur(10px)',
+          backgroundColor: 'blackAlpha.500',
         },
       },
     },

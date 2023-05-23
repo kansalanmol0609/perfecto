@@ -3,6 +3,7 @@ import {Poppins} from 'next/font/google';
 
 //contexts
 import {Box, ChakraProvider} from '@chakra-ui/react';
+import {GlobalModalContextProvider} from '@/contexts/globalModalContext';
 
 //components
 import {Navbar} from '@/components/navbar';
@@ -26,13 +27,15 @@ const poppins = Poppins({
 export default function App({Component, pageProps}: AppProps) {
   return (
     <ChakraProvider theme={THEME}>
-      <Box className={poppins.className}>
-        <Navbar />
-        <Box display="flex" flexDirection="column" height="100vh">
-          <Component {...pageProps} />
-          <Footer />
+      <GlobalModalContextProvider>
+        <Box className={poppins.className}>
+          <Navbar />
+          <Box display="flex" flexDirection="column" height="100vh">
+            <Component {...pageProps} />
+            <Footer />
+          </Box>
         </Box>
-      </Box>
+      </GlobalModalContextProvider>
     </ChakraProvider>
   );
 }

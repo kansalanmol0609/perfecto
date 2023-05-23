@@ -2,7 +2,8 @@
 import {memo} from 'react';
 
 //components
-import {Box, Button, FormControl, FormLabel, Input, Select} from '@chakra-ui/react';
+import {Box, Button} from '@chakra-ui/react';
+import {Body} from './components/Body';
 
 //fonts
 import {Great_Vibes} from 'next/font/google';
@@ -26,42 +27,7 @@ const MakeReservationForm = (): JSX.Element => {
       </Box>
 
       <form>
-        <Box display="grid" gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}} gap={4} py={4}>
-          <FormControl>
-            <FormLabel>Your Name</FormLabel>
-            <Input placeholder="Your Name" type="text" variant="outline" />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input placeholder="Email" type="email" variant="outline" />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Phone</FormLabel>
-            <Input placeholder="Phone" type="number" variant="outline" />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Date</FormLabel>
-            <Input placeholder="Date" type="date" variant="outline" />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Time</FormLabel>
-            <Input placeholder="Time" type="time" variant="outline" />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Number of Persons</FormLabel>
-            <Select placeholder="Number of Persons">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4+</option>
-            </Select>
-          </FormControl>
-        </Box>
+        <Body />
 
         <Button
           my={8}
