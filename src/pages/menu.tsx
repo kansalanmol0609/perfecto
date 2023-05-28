@@ -26,7 +26,7 @@ const ANIMATION_VARIANTS = {
   exit: {opacity: 0, y: 0},
 };
 
-export default function Home() {
+export default function MenuPage() {
   return (
     <>
       <Head>

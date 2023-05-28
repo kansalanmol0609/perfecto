@@ -8,8 +8,8 @@ export const ROUTES = [
     name: 'Menu',
   },
   {
-    href: '/stories',
-    name: 'Stories',
+    href: '/blogs',
+    name: 'Blogs',
   },
   {
     href: '/contact',
