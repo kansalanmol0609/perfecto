@@ -1,6 +1,9 @@
 //utils
 import {extendTheme} from '@chakra-ui/react';
 
+//components
+import {tabsTheme} from './components/Tabs';
+
 export const THEME = extendTheme({
   colors: {
     brand: {
@@ -59,6 +62,7 @@ export const THEME = extendTheme({
         },
       },
     },
+
     Input: {
       variants: {
         outline: {
@@ -99,6 +103,7 @@ export const THEME = extendTheme({
         },
       },
     },
+
     Select: {
       variants: {
         outline: {
@@ -128,5 +133,7 @@ export const THEME = extendTheme({
         },
       },
     },
+
+    Tabs: tabsTheme,
   },
 });
