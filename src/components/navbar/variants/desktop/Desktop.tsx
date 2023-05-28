@@ -53,7 +53,7 @@ const Desktop = (): JSX.Element => {
 
         <Box display="flex" alignItems="center" gap={8}>
           {ROUTES.map(({name, href}) => (
-            <NextLink href={href} passHref key={name}>
+            <NextLink href={href} passHref key={name} legacyBehavior>
               <Link
                 fontSize="sm"
                 fontWeight="medium"

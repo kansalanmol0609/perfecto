@@ -57,7 +57,7 @@ export default function BlogsPage() {
               </BreadcrumbItem>
 
               <BreadcrumbItem>
-                <BreadcrumbLink href="/stories">Blogs</BreadcrumbLink>
+                <BreadcrumbLink href="/blogs">Blogs</BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
           </Stack>

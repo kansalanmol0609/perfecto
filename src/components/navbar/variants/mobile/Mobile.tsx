@@ -61,7 +61,7 @@ const Mobile = (): JSX.Element => {
       <Collapse in={isOpen} animateOpacity>
         <Box display="flex" flexDirection="column" alignItems="stretch" gap={4} marginBottom={4}>
           {ROUTES.map(({name, href}) => (
-            <NextLink href={href} passHref key={name}>
+            <NextLink href={href} passHref key={name} legacyBehavior>
               <Link
                 fontSize="sm"
                 fontWeight="medium"
