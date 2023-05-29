@@ -31,7 +31,7 @@ export default function BlogsPage() {
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
-          backgroundImage="https://preview.colorlib.com/theme/feliciano/images/bg_1.jpg.webp"
+          backgroundImage="https://preview.colorlib.com/theme/feliciano/images/bg_2.jpg.webp"
           backgroundAttachment="fixed"
           width="full"
           display="flex"
