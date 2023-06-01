@@ -31,7 +31,7 @@ const CarouselSection = ({cards}: Props): JSX.Element => {
   const goToNextSlide = useCallback(() => slider?.slickNext(), [slider]);
 
   return (
-    <Box position="relative" height="600px" width="full" overflow="hidden">
+    <Box position="relative" height="400px" width="full" overflow="hidden">
       <link
         rel="stylesheet"
         type="text/css"
@@ -74,7 +74,7 @@ const CarouselSection = ({cards}: Props): JSX.Element => {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={'600px'}
+            height={'400px'}
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"

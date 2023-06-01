@@ -1,5 +1,6 @@
 //libs
 import Head from 'next/head';
+import {motion} from 'framer-motion';
 
 //components
 import {Box} from '@chakra-ui/react';
@@ -13,6 +14,12 @@ import {RecentBlogPostsSection} from '@/modules/homePage/sections/RecentBlogPost
 //constants
 import {HOME_PAGE_CAROUSEL_CARDS, STATS} from '@/modules/homePage/constants';
 
+const ANIMATION_VARIANTS = {
+  initial: {opacity: 0, y: 20},
+  animate: {opacity: 1, y: 0},
+  exit: {opacity: 0, y: 0},
+};
+
 export default function Home() {
   return (
     <>
@@ -25,7 +32,16 @@ export default function Home() {
 
       <Box as="main">
         <CarouselSection cards={HOME_PAGE_CAROUSEL_CARDS} />
-        <AboutSection />
+
+        <motion.div
+          initial="initial"
+          animate="animate"
+          variants={ANIMATION_VARIANTS}
+          transition={{duration: 0.2}}
+        >
+          <AboutSection />
+        </motion.div>
+
         <StatsSection stats={STATS} />
         <SpecialtiesSection />
         <MakeReservationSection />
