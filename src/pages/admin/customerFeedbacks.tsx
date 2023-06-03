@@ -1,21 +1,87 @@
 //libs
 import Head from 'next/head';
 import {useQuery, gql} from '@apollo/client';
+import _range from 'lodash/range';
 
 //components
-import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack} from '@chakra-ui/react';
+import {
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Button,
+  Skeleton,
+  Stack,
+} from '@chakra-ui/react';
+
+//icons
+import {WarningTwoIcon} from '@chakra-ui/icons';
+
+//types
+import {Feedback} from '@prisma/client';
+import {FeedbackCard} from '@/components/FeedbackCard';
+import {useCallback} from 'react';
 
 const FEEDBACKS_QUERY = gql`
   query Feedbacks {
     readFeedbacks {
+      email
       id
+      message
       name
+      subject
     }
   }
 `;
 
-export default function FeedbacksPage() {
-  const {data, loading, error} = useQuery(FEEDBACKS_QUERY);
+export default function CustomerFeedbacksPage() {
+  const {data, loading, error, refetch} = useQuery<{readFeedbacks: Feedback[]}>(FEEDBACKS_QUERY);
+
+  const handleRefetch = useCallback(() => refetch(), [refetch]);
+
+  const renderBody = useCallback((): JSX.Element => {
+    if (loading) {
+      return (
+        <Box
+          maxWidth={{md: '5xl', sm: 'full'}}
+          mx="auto"
+          display="grid"
+          gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}
+          gap={2}
+        >
+          {_range(10).map((idx: number) => (
+            <Skeleton width="full" height={56} key={idx} />
+          ))}
+        </Box>
+      );
+    }
+
+    if (error) {
+      return (
+        <Box mx="auto" display="flex" flexDirection="column" alignItems="center" gap={4}>
+          <WarningTwoIcon color="brand.500" boxSize={20} />
+          <Box fontWeight="bold">Oops! An Error Occurred!</Box>
+          <Button colorScheme="brand" variant="outline" onClick={handleRefetch}>
+            Retry
+          </Button>
+        </Box>
+      );
+    }
+
+    return (
+      <Box
+        maxWidth={{md: '5xl', sm: 'full'}}
+        mx="auto"
+        display="grid"
+        gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}
+        gap={2}
+      >
+        {data?.readFeedbacks.map((feedback: Feedback) => (
+          <FeedbackCard key={feedback.id} feedback={feedback} />
+        ))}
+      </Box>
+    );
+  }, [data?.readFeedbacks, error, handleRefetch, loading]);
 
   return (
     <>
@@ -28,7 +94,7 @@ export default function FeedbacksPage() {
 
       <Box as="main">
         <Box
-          height={'400px'}
+          height="400px"
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -68,7 +134,9 @@ export default function FeedbacksPage() {
           </Stack>
         </Box>
 
-        <Box py={16} px={4} maxWidth={1100} mx="auto"></Box>
+        <Box py={16} px={4} maxWidth={1100} mx="auto">
+          {renderBody()}
+        </Box>
       </Box>
     </>
   );

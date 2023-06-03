@@ -5,6 +5,7 @@ export const typeDefs = `#graphql
     email: String!
     subject: String!
     message: String!
+    createdAt: String
   }
 
   input CreateFeedbackInput {
