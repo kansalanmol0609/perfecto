@@ -3,17 +3,8 @@ import Head from 'next/head';
 import {motion} from 'framer-motion';
 
 //components
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Button,
-  FormControl,
-  Input,
-  Stack,
-  Textarea,
-} from '@chakra-ui/react';
+import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack} from '@chakra-ui/react';
+import {ContactUsForm} from '@/components/contactUsForm';
 
 const ANIMATION_VARIANTS = {
   initial: {opacity: 0, y: 20},
@@ -77,11 +68,17 @@ export default function BlogsPage() {
             transition={{duration: 0.2}}
           >
             <Box display="flex" gap={8} flexDirection={{md: 'row', sm: 'column'}}>
-              <Box flex={1} borderWidth={1} borderStyle="solid" borderColor="blackAlpha.400">
+              <Box
+                flex={1}
+                borderWidth={1}
+                borderStyle="solid"
+                borderColor="blackAlpha.400"
+                alignSelf={{md: 'flex-start'}}
+              >
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.452221108747!2d77.08609031035704!3d28.49603899016599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19387262e51d%3A0xc648fb515228d28c!2sImperfecto%20Cyberhub!5e0!3m2!1sen!2ssg!4v1685380265107!5m2!1sen!2ssg"
                   width="100%"
-                  height="450"
+                  height="500px"
                   style={{
                     border: '0px',
                   }}
@@ -90,37 +87,8 @@ export default function BlogsPage() {
                 ></iframe>
               </Box>
 
-              <Box flex={1}>
-                <form>
-                  <Box fontWeight="bold" fontSize="2xl" my={4}>
-                    Contact Us
-                  </Box>
-                  <FormControl>
-                    <Input placeholder="Your Name" type="text" variant="outline" />
-                  </FormControl>
-
-                  <FormControl>
-                    <Input placeholder="Your Email" type="email" variant="outline" my={4} />
-                  </FormControl>
-
-                  <FormControl>
-                    <Input placeholder="Subject" type="text" variant="outline" />
-                  </FormControl>
-
-                  <FormControl>
-                    <Textarea placeholder="Message" variant="outline" my={4} />
-                  </FormControl>
-
-                  <Button
-                    size="lg"
-                    colorScheme="brand"
-                    aria-label="Send Message"
-                    fontSize="sm"
-                    type="submit"
-                  >
-                    Send Message
-                  </Button>
-                </form>
+              <Box flex={1} height="700px">
+                <ContactUsForm />
               </Box>
             </Box>
 
