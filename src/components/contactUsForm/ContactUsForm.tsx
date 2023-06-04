@@ -58,6 +58,7 @@ const ContactUsForm = () => {
       initialValues={INITIAL_VALUES}
       onSubmit={handleSubmit}
       validationSchema={VALIDATION_SCHEMA}
+      validateOnBlur={false}
     >
       {({submitForm}): JSX.Element => (
         <>

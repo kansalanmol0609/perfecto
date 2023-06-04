@@ -2,7 +2,8 @@
 import {memo} from 'react';
 
 //components
-import {Box, Button, Icon, Input} from '@chakra-ui/react';
+import {Box, Icon} from '@chakra-ui/react';
+import {Newsletter} from './Newsletter';
 
 //icons
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
@@ -145,18 +146,7 @@ const Footer = (): JSX.Element => {
           </Box>
         </Box>
 
-        <Box display="flex" flexDirection="column" gap={1}>
-          <Box fontSize="md" fontWeight="bold">
-            Newsletter
-          </Box>
-          <Box color="whiteAlpha.600" fontSize="sm" fontWeight="semibold" mb={4}>
-            Far far away, behind the word mountains, far from the countries.
-          </Box>
-          <Input type="email" placeholder="Enter email address" variant="filled" />
-          <Button variant="solid" colorScheme="brand" mt={2}>
-            Subscribe
-          </Button>
-        </Box>
+        <Newsletter />
       </Box>
     </Box>
   );
