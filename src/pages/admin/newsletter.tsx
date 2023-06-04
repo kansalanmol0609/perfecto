@@ -79,6 +79,7 @@ export default function NewsLetterPage() {
         <Checkbox
           isChecked={allChecked}
           isIndeterminate={isIndeterminate}
+          colorScheme="brand"
           onChange={(e) =>
             allChecked && !!data?.getNewsLetterSubscribers
               ? setEmailAddressesToExclude(data.getNewsLetterSubscribers.map((sub) => sub.email))
@@ -92,6 +93,7 @@ export default function NewsLetterPage() {
         <Stack pl={6} mt={2} spacing={2}>
           {data?.getNewsLetterSubscribers.map((subscriber: NewsLetterSubscriber) => (
             <Checkbox
+              colorScheme="brand"
               key={subscriber.email}
               isChecked={!emailAddressesToExclude.includes(subscriber.email)}
               onChange={(e) =>
