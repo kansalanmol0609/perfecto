@@ -5,6 +5,7 @@ import NextLink from 'next/link';
 //components
 import {Box, Button} from '@chakra-ui/react';
 import {Link} from '@chakra-ui/react';
+import {UserProfile} from '../../components/UserProfile';
 
 //hooks
 import {useRouter} from 'next/router';
@@ -68,6 +69,8 @@ const Desktop = (): JSX.Element => {
           <Button colorScheme="brand" fontSize="xs" onClick={openMakeReservationModal}>
             Book a Table
           </Button>
+
+          <UserProfile />
         </Box>
       </Box>
     </Box>

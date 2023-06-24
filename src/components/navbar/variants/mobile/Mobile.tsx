@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 
 //components
 import {Box, Button, Collapse, Link, useDisclosure} from '@chakra-ui/react';
+import {UserProfile} from '../../components/UserProfile';
 
 //hooks
 import {useRouter} from 'next/router';
@@ -39,6 +40,7 @@ const Mobile = (): JSX.Element => {
         alignItems="center"
         justifyContent="space-between"
         height={NAVBAR_HEIGHT}
+        gap={4}
       >
         <Box flexGrow={1} color="white" fontSize="lg" fontWeight="black">
           Perfecto
@@ -56,6 +58,8 @@ const Mobile = (): JSX.Element => {
         >
           Menu
         </Button>
+
+        <UserProfile />
       </Box>
 
       <Collapse in={isOpen} animateOpacity>
