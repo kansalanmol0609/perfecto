@@ -14,6 +14,9 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
+//decorators
+import {ROUTE_TYPE, withAuthentication} from '@/decorators/withAuthentication';
+
 //icons
 import {WarningTwoIcon} from '@chakra-ui/icons';
 
@@ -34,40 +37,14 @@ const FEEDBACKS_QUERY = gql`
   }
 `;
 
-export default function CustomerFeedbacksPage() {
+const CustomerFeedbacksPageBody = withAuthentication({
+  routeType: ROUTE_TYPE.ADMIN,
+})(() => {
   const {data, loading, error, refetch} = useQuery<{readFeedbacks: Feedback[]}>(FEEDBACKS_QUERY);
 
   const handleRefetch = useCallback(() => refetch(), [refetch]);
 
-  const renderBody = useCallback((): JSX.Element => {
-    if (loading) {
-      return (
-        <Box
-          maxWidth={{md: '5xl', sm: 'full'}}
-          mx="auto"
-          display="grid"
-          gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}
-          gap={2}
-        >
-          {_range(10).map((idx: number) => (
-            <Skeleton width="full" height={56} key={idx} />
-          ))}
-        </Box>
-      );
-    }
-
-    if (error) {
-      return (
-        <Box mx="auto" display="flex" flexDirection="column" alignItems="center" gap={4}>
-          <WarningTwoIcon color="brand.500" boxSize={20} />
-          <Box fontWeight="bold">Oops! An Error Occurred!</Box>
-          <Button colorScheme="brand" variant="outline" onClick={handleRefetch}>
-            Retry
-          </Button>
-        </Box>
-      );
-    }
-
+  if (loading) {
     return (
       <Box
         maxWidth={{md: '5xl', sm: 'full'}}
@@ -76,13 +53,41 @@ export default function CustomerFeedbacksPage() {
         gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}
         gap={2}
       >
-        {data?.readFeedbacks.map((feedback: Feedback) => (
-          <FeedbackCard key={feedback.id} feedback={feedback} />
+        {_range(10).map((idx: number) => (
+          <Skeleton width="full" height={56} key={idx} />
         ))}
       </Box>
     );
-  }, [data?.readFeedbacks, error, handleRefetch, loading]);
+  }
 
+  if (error) {
+    return (
+      <Box mx="auto" display="flex" flexDirection="column" alignItems="center" gap={4}>
+        <WarningTwoIcon color="brand.500" boxSize={20} />
+        <Box fontWeight="bold">Oops! An Error Occurred!</Box>
+        <Button colorScheme="brand" variant="outline" onClick={handleRefetch}>
+          Retry
+        </Button>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      maxWidth={{md: '5xl', sm: 'full'}}
+      mx="auto"
+      display="grid"
+      gridTemplateColumns={{md: 'repeat(2, 1fr)', sm: '1fr'}}
+      gap={2}
+    >
+      {data?.readFeedbacks.map((feedback: Feedback) => (
+        <FeedbackCard key={feedback.id} feedback={feedback} />
+      ))}
+    </Box>
+  );
+});
+
+function CustomerFeedbacksPage() {
   return (
     <>
       <Head>
@@ -135,9 +140,11 @@ export default function CustomerFeedbacksPage() {
         </Box>
 
         <Box py={16} px={4} maxWidth={1100} mx="auto">
-          {renderBody()}
+          <CustomerFeedbacksPageBody />
         </Box>
       </Box>
     </>
   );
 }
+
+export default CustomerFeedbacksPage;

@@ -17,6 +17,12 @@ import {
 } from '@chakra-ui/react';
 import {SendEmailToSubscribersForm} from '@/components/sendEmailToSubscribersForm';
 
+//hocs
+import {withAuthentication} from '@/decorators/withAuthentication';
+
+//constants
+import {ROUTE_TYPE} from '@/decorators/withAuthentication/withAuthentication';
+
 //icons
 import {WarningTwoIcon} from '@chakra-ui/icons';
 
@@ -32,7 +38,9 @@ const GET_NEWS_LETTER_SUBSCRIBERS = gql`
   }
 `;
 
-export default function NewsLetterPage() {
+const NewsLetterPageBody = withAuthentication({
+  routeType: ROUTE_TYPE.ADMIN,
+})(() => {
   const {data, loading, error, refetch} = useQuery<{
     getNewsLetterSubscribers: NewsLetterSubscriber[];
   }>(GET_NEWS_LETTER_SUBSCRIBERS);
@@ -121,6 +129,33 @@ export default function NewsLetterPage() {
   ]);
 
   return (
+    <Box py={16} px={4} maxWidth={1100} mx="auto">
+      <Box display="flex" flexDirection={{sm: 'column', md: 'row'}} gap={8}>
+        <Box flex={2}>
+          <SendEmailToSubscribersForm
+            emailAddressesToExclude={emailAddressesToExclude}
+            subscribers={data?.getNewsLetterSubscribers!}
+          />
+        </Box>
+
+        <Box flex={1}>
+          <Box fontWeight="bold" fontSize="xl">
+            Select Email Addresses
+          </Box>
+
+          <Box py={8} maxHeight="md" overflow="auto">
+            <Box display="flex" flexDirection="column" gap={2}>
+              {renderBody()}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+});
+
+function NewsLetterPage() {
+  return (
     <>
       <Head>
         <title>Newsletter</title>
@@ -171,29 +206,10 @@ export default function NewsLetterPage() {
           </Stack>
         </Box>
 
-        <Box py={16} px={4} maxWidth={1100} mx="auto">
-          <Box display="flex" flexDirection={{sm: 'column', md: 'row'}} gap={8}>
-            <Box flex={2}>
-              <SendEmailToSubscribersForm
-                emailAddressesToExclude={emailAddressesToExclude}
-                subscribers={data?.getNewsLetterSubscribers!}
-              />
-            </Box>
-
-            <Box flex={1}>
-              <Box fontWeight="bold" fontSize="xl">
-                Select Email Addresses
-              </Box>
-
-              <Box py={8} maxHeight="md" overflow="auto">
-                <Box display="flex" flexDirection="column" gap={2}>
-                  {renderBody()}
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+        <NewsLetterPageBody />
       </Box>
     </>
   );
 }
+
+export default NewsLetterPage;

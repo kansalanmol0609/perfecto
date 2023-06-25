@@ -1,8 +1,12 @@
+//libs
 import NextAuth, {NextAuthOptions} from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import {PrismaAdapter} from '@next-auth/prisma-adapter';
 
+//utils
 import {prisma} from '@/server/prisma';
+
+//types
 import {AdapterUser} from 'next-auth/adapters';
 
 // For more information on each option (and a full list of options) go to
@@ -24,6 +28,15 @@ export const authOptions: NextAuthOptions = {
         ]
       : []),
   ],
+  callbacks: {
+    session({session, user}) {
+      if (user && session.user) {
+        session.user = user;
+      }
+
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
