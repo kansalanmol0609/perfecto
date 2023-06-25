@@ -1,3 +1,6 @@
+//decorators
+import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthentication';
+
 //types
 import {GraphQLContext} from '../context';
 
@@ -10,20 +13,24 @@ type SendEmailToNewsLetterSubscribersInput = {
   body: string;
 };
 
-export const sendEmailToNewsLetterSubscribers = async (
-  _parent: any,
-  args: {sendEmailToNewsLetterSubscribersInput: SendEmailToNewsLetterSubscribersInput},
-  ctx: GraphQLContext,
-) => {
-  const {
-    sendEmailToNewsLetterSubscribersInput: {receiverEmailAddresses, subject, body},
-  } = args;
+export const sendEmailToNewsLetterSubscribers = withAuthentication({
+  apiType: API_TYPE.ADMIN,
+})(
+  async (
+    _parent: any,
+    args: {sendEmailToNewsLetterSubscribersInput: SendEmailToNewsLetterSubscribersInput},
+    ctx: GraphQLContext,
+  ) => {
+    const {
+      sendEmailToNewsLetterSubscribersInput: {receiverEmailAddresses, subject, body},
+    } = args;
 
-  await sendBulkEmail({
-    subject,
-    body,
-    receivers: receiverEmailAddresses,
-  });
+    await sendBulkEmail({
+      subject,
+      body,
+      receivers: receiverEmailAddresses,
+    });
 
-  return true;
-};
+    return true;
+  },
+);
