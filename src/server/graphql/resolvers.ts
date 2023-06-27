@@ -6,6 +6,7 @@ import {readNewsLetterSubscribers} from './queries/readNewsLetterSubscribers';
 import {createNewsLetterSubscriber} from './mutations/createNewsLetterSubscriber';
 import {deleteNewsLetterSubscriber} from './mutations/deleteNewsLetterSubscriber';
 import {createFeedback} from './mutations/createFeedback';
+import {createFood} from './mutations/createFood';
 import {sendEmailToNewsLetterSubscribers} from './mutations/sendEmailToNewsLetterSubscribers';
 
 export const resolvers = {
@@ -19,5 +20,6 @@ export const resolvers = {
     createNewsLetterSubscriber,
     deleteNewsLetterSubscriber,
     sendEmailToNewsLetterSubscribers,
+    createFood,
   },
 };

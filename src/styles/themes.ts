@@ -104,6 +104,24 @@ export const THEME = extendTheme({
       },
     },
 
+    NumberInput: {
+      variants: {
+        outline: {
+          field: {
+            borderRadius: '0px',
+            _focus: {
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
+              borderColor: 'outline.500', // set the focus border color to blue.500
+            },
+            _hover: {
+              boxShadow: '0 0 0 1px #AA8F66', // remove the default focus box shadow
+              borderColor: 'outline.500',
+            },
+          },
+        },
+      },
+    },
+
     Textarea: {
       variants: {
         outline: {

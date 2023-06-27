@@ -179,22 +179,20 @@ enum FoodCategory {
 }
 
 model Food {
-  id           String       @id @default(cuid())
-  name         String
-  description  String
-  pictures     String
-  isVeg        Boolean
-  inStock      Boolean
-  pricePerUnit Float
-  price        Json // {value: Int; Unit: String}
-  priceUnit    String
-  category     FoodCategory
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  user         User         @relation(fields: [userId], references: [id])
-  userId       String
-  orderItem    OrderItem[]
-  cartItem     CartItem?
+  id          String       @id @default(cuid())
+  name        String
+  description String
+  pictures    String
+  isVeg       Boolean
+  inStock     Boolean
+  price       Json // {amount: string; currency: string}
+  category    FoodCategory
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  user        User         @relation(fields: [userId], references: [id])
+  userId      String
+  orderItem   OrderItem[]
+  cartItem    CartItem?
 
   @@index([userId])
 }

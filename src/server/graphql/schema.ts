@@ -8,9 +8,42 @@ export const typeDefs = `#graphql
     createdAt: String
   }
 
+  enum FoodCategory {
+    BREAKFAST
+    LUNCH
+    DINNER
+    DESSERT
+    DRINK
+  }
+
+  type Price {
+    amount: Int!
+    currency: String!
+    precision: Int
+  }
+
+  type Food {
+    id: String!
+    name: String!
+    description: String!
+    pictures: String!
+    isVeg: Boolean!
+    inStock: Boolean!
+    price: Price!
+    category: FoodCategory!
+    createdAt: String!
+    updatedAt: String!
+    userId: String!
+  }
+
   type NewsLetterSubscriber {
     email: String!
     createdAt: String!
+  }
+
+  type Query {
+    readFeedbacks: [Feedback]!
+    readNewsLetterSubscribers: [NewsLetterSubscriber]!
   }
 
   input CreateFeedbackInput {
@@ -26,9 +59,20 @@ export const typeDefs = `#graphql
     body: String!
   }
 
-  type Query {
-    readFeedbacks: [Feedback]!
-    readNewsLetterSubscribers: [NewsLetterSubscriber]!
+  input PriceInput {
+    amount: Int!
+    currency: String!
+    precision: Int
+  }
+
+  input CreateFoodInput {
+    name: String!
+    description: String!
+    pictures: String!
+    isVeg: Boolean!
+    inStock: Boolean!
+    price: PriceInput!
+    category: FoodCategory!
   }
 
   type Mutation {
@@ -36,5 +80,6 @@ export const typeDefs = `#graphql
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
     deleteNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
     sendEmailToNewsLetterSubscribers(sendEmailToNewsLetterSubscribersInput: SendEmailToNewsLetterSubscribersInput!): Boolean
+    createFood(createFoodInput: CreateFoodInput!): Food!
   }
 `;
