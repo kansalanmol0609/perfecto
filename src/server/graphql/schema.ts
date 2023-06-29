@@ -17,7 +17,7 @@ export const typeDefs = `#graphql
   }
 
   type Price {
-    amount: Int!
+    amount: String!
     currency: String!
     precision: Int
   }
@@ -44,6 +44,7 @@ export const typeDefs = `#graphql
   type Query {
     readFeedbacks: [Feedback]!
     readNewsLetterSubscribers: [NewsLetterSubscriber]!
+    readFoodItems: [Food]!
   }
 
   input CreateFeedbackInput {
@@ -81,5 +82,6 @@ export const typeDefs = `#graphql
     deleteNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
     sendEmailToNewsLetterSubscribers(sendEmailToNewsLetterSubscribersInput: SendEmailToNewsLetterSubscribersInput!): Boolean
     createFood(createFoodInput: CreateFoodInput!): Food!
+    deleteFoodItem(foodItemId: String!): Food!
   }
 `;

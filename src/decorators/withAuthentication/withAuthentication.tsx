@@ -3,8 +3,9 @@ import {ComponentType, useCallback} from 'react';
 import {signIn, useSession} from 'next-auth/react';
 
 //components
-import {Box, Button, Spinner} from '@chakra-ui/react';
+import {Box, Button} from '@chakra-ui/react';
 import {LockIcon} from '@chakra-ui/icons';
+import {FullPageLoader} from '@/components/FullPageLoader';
 
 //types
 import {Role} from '@prisma/client';
@@ -28,23 +29,7 @@ export const withAuthentication =
       }
 
       if (session.status === 'loading') {
-        return (
-          <Box
-            width="full"
-            height="50vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="brand.500"
-              size="xl"
-            />
-          </Box>
-        );
+        return <FullPageLoader />;
       }
 
       if (session.status !== 'authenticated') {

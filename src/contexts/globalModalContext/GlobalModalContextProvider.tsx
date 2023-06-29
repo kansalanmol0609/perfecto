@@ -10,6 +10,7 @@ import React, {
 
 //components
 import {MakeReservationModal} from './modals/makeReservationModal';
+import {ConfirmationModal} from './modals/confirmationModal';
 
 //types
 import {Action, GlobalModalContextType, State} from './types';
@@ -29,10 +30,28 @@ export const GlobalModalContextProvider = ({children}: {children: ReactElement})
   const [state, setState] = useState<State>(undefined);
 
   const openModal = useCallback((action: Action) => {
-    setState({
-      type: action.type,
-      props: action.payload.props,
-    });
+    switch (action.type) {
+      case MODAL_TYPES.MAKE_RESERVATION_MODAL: {
+        setState({
+          type: action.type,
+          props: action.payload.props,
+        });
+
+        break;
+      }
+
+      case MODAL_TYPES.CONFIRMATION_MODAL: {
+        setState({
+          type: action.type,
+          props: action.payload.props,
+        });
+
+        break;
+      }
+
+      default:
+        setState(undefined);
+    }
   }, []);
 
   const hideModal = useCallback(() => {
@@ -43,6 +62,9 @@ export const GlobalModalContextProvider = ({children}: {children: ReactElement})
     switch (state?.type) {
       case MODAL_TYPES.MAKE_RESERVATION_MODAL:
         return <MakeReservationModal {...state.props} />;
+
+      case MODAL_TYPES.CONFIRMATION_MODAL:
+        return <ConfirmationModal {...state.props} />;
 
       default:
         return null;
