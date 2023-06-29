@@ -45,6 +45,7 @@ export const typeDefs = `#graphql
     readFeedbacks: [Feedback]!
     readNewsLetterSubscribers: [NewsLetterSubscriber]!
     readFoodItems: [Food]!
+    fetchFoodItem(foodItemId: String!): Food
   }
 
   input CreateFeedbackInput {
@@ -76,6 +77,17 @@ export const typeDefs = `#graphql
     category: FoodCategory!
   }
 
+  input UpdateFoodItemInput {
+    id: ID!
+    name: String!
+    description: String!
+    pictures: String!
+    isVeg: Boolean!
+    inStock: Boolean!
+    price: PriceInput!
+    category: FoodCategory!
+  }
+
   type Mutation {
     createFeedback(feedbackInput: CreateFeedbackInput!): Feedback!
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
@@ -83,5 +95,6 @@ export const typeDefs = `#graphql
     sendEmailToNewsLetterSubscribers(sendEmailToNewsLetterSubscribersInput: SendEmailToNewsLetterSubscribersInput!): Boolean
     createFood(createFoodInput: CreateFoodInput!): Food!
     deleteFoodItem(foodItemId: String!): Food!
+    updateFoodItem(updateFoodItemInput: UpdateFoodItemInput!): Food!
   }
 `;

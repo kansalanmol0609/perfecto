@@ -1,7 +1,6 @@
 //libs
-import {useCallback, memo} from 'react';
+import {memo} from 'react';
 import * as Yup from 'yup';
-import Dinero, {Currency} from 'dinero.js';
 
 //components
 import {Box, Button, HStack} from '@chakra-ui/react';
@@ -14,13 +13,10 @@ import {
   TextareaControl,
 } from 'formik-chakra-ui';
 
-//hooks
-import {useCreateFood} from './hooks/useCreateFood';
-
 //types
 import {FoodCategory} from '@prisma/client';
 
-enum FORM_KEYS {
+export enum FORM_KEYS {
   NAME = 'name',
   DESCRIPTION = 'description',
   PICTURES = 'pictures',
@@ -31,7 +27,7 @@ enum FORM_KEYS {
   CATEGORY = 'category',
 }
 
-type FormValues = {
+export type FormValues = {
   [FORM_KEYS.NAME]: string;
   [FORM_KEYS.DESCRIPTION]: string;
   [FORM_KEYS.PICTURES]: string;
@@ -64,34 +60,19 @@ const VALIDATION_SCHEMA = Yup.object({
   [FORM_KEYS.CATEGORY]: Yup.string().required('Category is mandatory!'),
 });
 
-const CreateFoodForm = () => {
-  const {createFood, loading} = useCreateFood();
-
-  const handleSubmit: FormikConfig<FormValues>['onSubmit'] = useCallback(
-    (values: FormValues, {resetForm}) =>
-      createFood({
-        variables: {
-          createFoodInput: {
-            name: values.name,
-            description: values.description,
-            pictures: values.pictures,
-            isVeg: values.isVeg,
-            inStock: values.inStock,
-            price: Dinero({
-              amount: +values.priceAmount,
-              currency: values.priceCurrency as Currency,
-            }).toObject(),
-            category: values.category,
-          },
-        },
-      }).then(() => resetForm()),
-    [createFood],
-  );
-
+const CreateFoodForm = ({
+  initialValue = INITIAL_VALUES,
+  onSubmit,
+  isSubmitting,
+}: {
+  initialValue?: FormValues;
+  isSubmitting: boolean;
+  onSubmit: FormikConfig<FormValues>['onSubmit'];
+}) => {
   return (
     <Formik<FormValues>
-      initialValues={INITIAL_VALUES}
-      onSubmit={handleSubmit}
+      initialValues={initialValue}
+      onSubmit={onSubmit}
       validationSchema={VALIDATION_SCHEMA}
       validateOnBlur={false}
     >
@@ -178,7 +159,7 @@ const CreateFoodForm = () => {
             colorScheme="brand"
             type="submit"
             onClick={submitForm}
-            isLoading={loading}
+            isLoading={isSubmitting}
           >
             Submit
           </Button>
