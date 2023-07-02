@@ -3,19 +3,21 @@ import {memo, useCallback} from 'react';
 import NextLink from 'next/link';
 
 //components
-import {Box, Button} from '@chakra-ui/react';
+import {Box} from '@chakra-ui/react';
 import {Link} from '@chakra-ui/react';
 import {UserProfile} from '../../components/UserProfile';
 
 //hooks
 import {useRouter} from 'next/router';
 import {useGlobalModalContext, MODAL_TYPES} from '@/contexts/globalModalContext';
+import {useSession} from 'next-auth/react';
 
 //constants
 import {NAVBAR_HEIGHT, ROUTES} from '../../constants';
 
 const Desktop = (): JSX.Element => {
   const {pathname} = useRouter();
+  const session = useSession();
 
   const {openModal} = useGlobalModalContext();
 
@@ -66,9 +68,17 @@ const Desktop = (): JSX.Element => {
             </NextLink>
           ))}
 
-          <Button colorScheme="brand" fontSize="xs" onClick={openMakeReservationModal}>
-            Book a Table
-          </Button>
+          {session.status === 'authenticated' ? (
+            <Link
+              fontSize="sm"
+              fontWeight="medium"
+              color="white"
+              _hover={{textDecoration: 'none', color: 'brand.500'}}
+              onClick={openMakeReservationModal}
+            >
+              Book a Table
+            </Link>
+          ) : null}
 
           <UserProfile />
         </Box>

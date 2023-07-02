@@ -36,10 +36,10 @@ const FoodItemCard = memo(({item}: {item: Food}): JSX.Element => {
       >
         <Box display="flex" flexDirection="column" gap={2} backgroundColor="white">
           <Box display="flex" gap={2} justifyContent="space-between">
-            <Box fontWeight="bold" fontSize="lg">
+            <Box fontWeight="bold" fontSize={{sm: 'sm', md: 'lg'}}>
               {item.name}
             </Box>
-            <Box color="brand.500" mt="0.5" fontWeight="semibold">
+            <Box color="brand.500" mt="0.5" fontWeight="semibold" fontSize={{sm: 'sm'}}>
               {Dinero({
                 //@ts-ignore
                 amount: +item.price?.amount * 100,
@@ -49,10 +49,10 @@ const FoodItemCard = memo(({item}: {item: Food}): JSX.Element => {
             </Box>
           </Box>
 
-          <Box>{item.description}</Box>
+          <Box fontSize={{sm: 'sm'}}>{item.description}</Box>
         </Box>
 
-        <Button colorScheme="brand" aria-label="Order now" variant="solid">
+        <Button colorScheme="brand" aria-label="Order now" variant="solid" fontSize={{sm: 'sm'}}>
           Order now
         </Button>
       </Box>

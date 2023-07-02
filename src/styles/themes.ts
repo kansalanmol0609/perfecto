@@ -55,7 +55,11 @@ export const THEME = extendTheme({
             border: '1px solid',
             borderColor: 'outline.500',
             boxShadow: '0 0 0 1px #AA8F66',
+            _disabled: {
+              color: 'white',
+            },
           },
+
           _focus: {
             boxShadow: '0 0 0 1px  #AA8F66',
           },

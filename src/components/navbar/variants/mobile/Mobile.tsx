@@ -9,6 +9,7 @@ import {UserProfile} from '../../components/UserProfile';
 //hooks
 import {useRouter} from 'next/router';
 import {useGlobalModalContext, MODAL_TYPES} from '@/contexts/globalModalContext';
+import {useSession} from 'next-auth/react';
 
 //icons
 import {HamburgerIcon} from '@chakra-ui/icons';
@@ -22,6 +23,8 @@ const Mobile = (): JSX.Element => {
   const {pathname} = useRouter();
 
   const {openModal} = useGlobalModalContext();
+
+  const session = useSession();
 
   const openMakeReservationModal = useCallback(
     () =>
@@ -58,8 +61,6 @@ const Mobile = (): JSX.Element => {
         >
           Menu
         </Button>
-
-        <UserProfile />
       </Box>
 
       <Collapse in={isOpen} animateOpacity>
@@ -77,15 +78,19 @@ const Mobile = (): JSX.Element => {
             </NextLink>
           ))}
 
-          <Button
-            colorScheme="brand"
-            fontSize="xs"
-            display="inline-block"
-            textAlign="start"
-            onClick={openMakeReservationModal}
-          >
-            Book a Table
-          </Button>
+          {session.status === 'authenticated' ? (
+            <Link
+              fontSize="sm"
+              fontWeight="medium"
+              color="whiteAlpha.600"
+              _hover={{textDecoration: 'none', color: 'white'}}
+              onClick={openMakeReservationModal}
+            >
+              Book a Table
+            </Link>
+          ) : null}
+
+          <UserProfile />
         </Box>
       </Collapse>
     </Box>

@@ -28,8 +28,7 @@ const UserProfile = (): JSX.Element => {
     return (
       <Button
         colorScheme="brand"
-        variant="outline"
-        fontSize="xs"
+        fontSize="sm"
         display="inline-block"
         textAlign="start"
         onClick={handleSignIn}

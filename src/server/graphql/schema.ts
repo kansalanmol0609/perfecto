@@ -16,6 +16,13 @@ export const typeDefs = `#graphql
     DRINK
   }
 
+  enum OrderStatus {
+  PREPARING
+  OUT_FOR_DELIVERY
+  DELIVERED
+  TERMINATED
+}
+
   type Price {
     amount: String!
     currency: String!
@@ -36,6 +43,32 @@ export const typeDefs = `#graphql
     userId: String!
   }
 
+  type Order{
+    id: String!
+    status:    OrderStatus
+    createdAt: String!
+    updatedAt: String!
+    userId: String!
+    addressId: String!
+    ratingId: String!
+  }
+
+  enum TableBookingStatus {
+    ACTIVE
+    CANCELLED
+    COMPLETED
+  }
+
+  type TableBooking {
+    id: String!
+    date: String!
+    numberOfPeople: Int!
+    createdAt: String!
+    updatedAt: String!
+    userId: String!
+    tableBookingStatus: TableBookingStatus!
+  }
+
   type NewsLetterSubscriber {
     email: String!
     createdAt: String!
@@ -45,6 +78,7 @@ export const typeDefs = `#graphql
     readFeedbacks: [Feedback]!
     readNewsLetterSubscribers: [NewsLetterSubscriber]!
     readFoodItems: [Food]!
+    readOrders: [Order]!
     fetchFoodItem(foodItemId: String!): Food
   }
 
@@ -88,6 +122,11 @@ export const typeDefs = `#graphql
     category: FoodCategory!
   }
 
+  input CreateTableBookingInput {
+    numberOfPeople: Int!
+    date: String!
+  }
+
   type Mutation {
     createFeedback(feedbackInput: CreateFeedbackInput!): Feedback!
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
@@ -96,5 +135,6 @@ export const typeDefs = `#graphql
     createFood(createFoodInput: CreateFoodInput!): Food!
     deleteFoodItem(foodItemId: String!): Food!
     updateFoodItem(updateFoodItemInput: UpdateFoodItemInput!): Food!
+    createTableBooking(createTableBookingInput: CreateTableBookingInput!): TableBooking!
   }
 `;

@@ -1,8 +1,9 @@
 //libs
-import {memo} from 'react';
+import {memo, useCallback} from 'react';
 
 //hooks
 import {useGlobalModalContext} from '@/contexts/globalModalContext';
+import {useReserveTable} from '@/hooks/useReserveTable';
 
 //types
 import {Props} from './types';
@@ -14,10 +15,10 @@ import {Great_Vibes} from 'next/font/google';
 import {
   Box,
   Button,
+  HStack,
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
@@ -30,6 +31,21 @@ const greatVibesFont = Great_Vibes({
 
 const MakeReservationModal = (props: Props): JSX.Element => {
   const {hideModal} = useGlobalModalContext();
+
+  const {reserveTable, loading} = useReserveTable();
+
+  const handleReserveTable = useCallback(
+    ({date, numberOfPeople}: {date: string; numberOfPeople: number}) =>
+      reserveTable({
+        variables: {
+          createTableBookingInput: {
+            numberOfPeople,
+            date,
+          },
+        },
+      }).then(hideModal),
+    [hideModal, reserveTable],
+  );
 
   return (
     <Modal isOpen onClose={hideModal} size="xl">
@@ -48,15 +64,19 @@ const MakeReservationModal = (props: Props): JSX.Element => {
         </ModalHeader>
 
         <ModalBody mt={-12}>
-          <MakeReservationForm />
+          <MakeReservationForm onSubmit={handleReserveTable}>
+            {({onSubmit}: {onSubmit: () => void}) => (
+              <HStack justifyContent="flex-end" my={2}>
+                <Button colorScheme="brand" variant="outline" mr={3} onClick={hideModal}>
+                  Cancel
+                </Button>
+                <Button colorScheme="brand" onClick={onSubmit} isLoading={loading}>
+                  Book
+                </Button>
+              </HStack>
+            )}
+          </MakeReservationForm>
         </ModalBody>
-
-        <ModalFooter display="flex" justifyContent="flex-end">
-          <Button colorScheme="brand" variant="outline" mr={3} onClick={hideModal}>
-            Cancel
-          </Button>
-          <Button colorScheme="brand">Book</Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );
