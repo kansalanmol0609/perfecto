@@ -5,8 +5,8 @@ import {signIn, signOut, useSession} from 'next-auth/react';
 
 //components
 import {
+  Avatar,
   Button,
-  Image,
   Link,
   Menu,
   MenuButton,
@@ -14,9 +14,6 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-
-const getInitialsImage = (name: string) =>
-  `https://ui-avatars.com/api/?background=AA8F66&color=fff&name=${name}`;
 
 const UserProfile = (): JSX.Element => {
   const session = useSession();
@@ -43,14 +40,12 @@ const UserProfile = (): JSX.Element => {
 
   return (
     <Menu>
-      <MenuButton>
-        <Image
-          alt="User Image"
+      <MenuButton textAlign="left">
+        <Avatar
           src={session.data.user?.image || ''}
-          fallbackSrc={getInitialsImage(user?.name || 'User')}
-          borderRadius="full"
-          height="10"
-          borderColor="blue"
+          name={user?.name ?? 'User'}
+          size="sm"
+          borderRadius={0}
         />
       </MenuButton>
       <MenuList>

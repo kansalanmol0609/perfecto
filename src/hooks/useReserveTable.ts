@@ -12,8 +12,12 @@ const CREATE_TABLE_BOOKING = gql`
       date
       numberOfPeople
       createdAt
-      updatedAt
-      userId
+      user {
+        id
+        name
+        email
+        image
+      }
       tableBookingStatus
     }
   }

@@ -3,12 +3,14 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
-import {TableBooking, TableBookingStatus} from '@prisma/client';
+import {TableBooking, TableBookingStatus, User} from '@prisma/client';
 
 type CreateTableBookingInput = {
   numberOfPeople: number;
   date: string;
 };
+
+type Result = Omit<TableBooking, 'userId'> & {user: User};
 
 export const createTableBooking = withAuthentication({
   apiType: API_TYPE.PRIVATE,
@@ -17,7 +19,7 @@ export const createTableBooking = withAuthentication({
     _parent: any,
     args: {createTableBookingInput: CreateTableBookingInput},
     ctx: GraphQLContext,
-  ): Promise<TableBooking> => {
+  ): Promise<Result> => {
     const {createTableBookingInput} = args;
     const session = ctx.session;
 
@@ -26,7 +28,10 @@ export const createTableBooking = withAuthentication({
         date: new Date(createTableBookingInput.date),
         numberOfPeople: createTableBookingInput.numberOfPeople,
         userId: session!.user!.id,
-        tableBookingStatus: TableBookingStatus.ACTIVE,
+        tableBookingStatus: TableBookingStatus.WAITING_FOR_CONFIRMATION,
+      },
+      include: {
+        user: true, // Include the associated user data
       },
     });
 

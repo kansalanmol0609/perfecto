@@ -198,9 +198,9 @@ model Food {
 }
 
 enum TableBookingStatus {
-  ACTIVE
+  WAITING_FOR_CONFIRMATION
   CANCELLED
-  COMPLETED
+  CONFIRMED
 }
 
 model TableBooking {

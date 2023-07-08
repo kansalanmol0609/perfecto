@@ -54,9 +54,25 @@ export const typeDefs = `#graphql
   }
 
   enum TableBookingStatus {
-    ACTIVE
+    WAITING_FOR_CONFIRMATION
     CANCELLED
-    COMPLETED
+    CONFIRMED
+  }
+
+  enum UserRole {
+    USER
+    ADMIN
+  }
+
+  type User {
+    id: String!
+    name: String
+    email: String
+    emailVerified: String
+    image: String
+    createdAt: String
+    updatedAt: String
+    role: UserRole!
   }
 
   type TableBooking {
@@ -65,7 +81,7 @@ export const typeDefs = `#graphql
     numberOfPeople: Int!
     createdAt: String!
     updatedAt: String!
-    userId: String!
+    user: User!
     tableBookingStatus: TableBookingStatus!
   }
 
@@ -74,12 +90,20 @@ export const typeDefs = `#graphql
     createdAt: String!
   }
 
+  enum BookingType {
+    UPCOMING
+    PENDING
+    PAST
+    CANCELLED
+  }
+
   type Query {
     readFeedbacks: [Feedback]!
     readNewsLetterSubscribers: [NewsLetterSubscriber]!
     readFoodItems: [Food]!
     readOrders: [Order]!
     fetchFoodItem(foodItemId: String!): Food
+    fetchTableBookings(bookingType: BookingType!): [TableBooking]!
   }
 
   input CreateFeedbackInput {
@@ -136,5 +160,7 @@ export const typeDefs = `#graphql
     deleteFoodItem(foodItemId: String!): Food!
     updateFoodItem(updateFoodItemInput: UpdateFoodItemInput!): Food!
     createTableBooking(createTableBookingInput: CreateTableBookingInput!): TableBooking!
+    cancelTableBooking(id: ID!): TableBooking!
+    confirmTableBooking(id: ID!): TableBooking!
   }
 `;

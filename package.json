@@ -26,6 +26,7 @@
     "@types/node": "20.2.1",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "dayjs": "^1.11.9",
     "deepmerge": "^4.3.1",
     "dinero.js": "^1.9.1",
     "eslint": "8.41.0",
@@ -40,7 +41,7 @@
     "nodemailer": "^6.9.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.8.0",
+    "react-icons": "^4.10.1",
     "react-slick": "^0.29.0",
     "typescript": "5.0.4",
     "yup": "^1.2.0"
