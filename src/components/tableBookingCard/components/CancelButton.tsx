@@ -95,7 +95,7 @@ const CancelButton = ({tableBooking}: Props) => {
         leftIcon={<RxCross1 />}
         colorScheme="brand"
         variant="outline"
-        size="sm"
+        size={{sm: 'xs', md: 'sm'}}
         onClick={onOpen}
       >
         Cancel

@@ -37,16 +37,16 @@ const TableBookingCard = ({tableBooking}: Props): JSX.Element => {
     >
       <VStack
         gap={2}
-        width={28}
+        width="16%"
         justifyContent="center"
         borderRightWidth={1}
         borderStyle="solid"
         borderColor="outline.500"
       >
-        <Box fontWeight="semibold" fontSize="lg">
+        <Box fontWeight="semibold" fontSize={{sm: 'xs', md: 'lg'}}>
           {parsedDate.format('ddd')}
         </Box>
-        <Box fontWeight="bold" fontSize="2xl">
+        <Box fontWeight="bold" fontSize={{sm: 'md', md: '2xl'}}>
           {parsedDate.format('DD')}
         </Box>
       </VStack>
@@ -55,13 +55,13 @@ const TableBookingCard = ({tableBooking}: Props): JSX.Element => {
         <Avatar
           src={tableBooking.user?.image || ''}
           name={tableBooking.user?.name ?? 'User'}
-          size="lg"
+          size={{sm: 'md', md: 'lg'}}
           borderRadius={0}
         />
 
         <VStack gap={1} flex={1} alignItems="flex-start">
           <HStack gap={1}>
-            <Box fontSize="md" fontWeight="bold">
+            <Box fontSize={{sm: 'sm', md: 'md'}} fontWeight="bold">
               {tableBooking.user?.name}
             </Box>
           </HStack>
@@ -69,19 +69,19 @@ const TableBookingCard = ({tableBooking}: Props): JSX.Element => {
           <HStack gap={4}>
             <HStack>
               <Icon as={BiSolidTimeFive} boxSize="4" />
-              <Box fontSize="md">{parsedDate.format('hh:mm A')}</Box>
+              <Box fontSize={{sm: 'sm', md: 'md'}}>{parsedDate.format('hh:mm A')}</Box>
             </HStack>
 
             <HStack>
               <Icon as={BsPeopleFill} boxSize="4" />
-              <Box fontSize="md">{tableBooking.numberOfPeople}</Box>
+              <Box fontSize={{sm: 'sm', md: 'md'}}>{tableBooking.numberOfPeople}</Box>
             </HStack>
           </HStack>
         </VStack>
       </HStack>
 
       {showActions ? (
-        <Box display="flex" flexDirection="row" gap={2}>
+        <Box display="flex" flexDirection={{md: 'row', sm: 'column'}} gap={2}>
           <ConfirmButton tableBooking={tableBooking} />
           <CancelButton tableBooking={tableBooking} />
         </Box>

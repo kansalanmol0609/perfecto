@@ -95,7 +95,7 @@ const ConfirmButton = ({tableBooking}: Props) => {
         leftIcon={<BsCheckLg />}
         colorScheme="brand"
         variant="outline"
-        size="sm"
+        size={{sm: 'xs', md: 'sm'}}
         onClick={onOpen}
       >
         Confirm

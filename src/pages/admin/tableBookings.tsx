@@ -27,11 +27,10 @@ import {
 import {FullPageLoader} from '@/components/FullPageLoader';
 import {FullPageErrorScreen} from '@/components/FullPageErrorScreen';
 import {motion, AnimatePresence} from 'framer-motion';
+import {TableBookingCard} from '@/components/tableBookingCard';
 
 //icons
 import {CalendarIcon} from '@chakra-ui/icons';
-import {BsPeopleFill} from 'react-icons/bs';
-import {BiSolidTimeFive} from 'react-icons/bi';
 
 //hocs
 import {withAuthentication} from '@/decorators/withAuthentication';
@@ -41,7 +40,6 @@ import {ROUTE_TYPE} from '@/decorators/withAuthentication/withAuthentication';
 
 //types
 import {TableBooking, User} from '@prisma/client';
-import {TableBookingCard} from '@/components/tableBookingCard';
 
 const ANIMATION_VARIANTS = {
   initial: {opacity: 0, y: 20},
