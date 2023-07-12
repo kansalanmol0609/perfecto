@@ -10,6 +10,9 @@ import {Box, Button} from '@chakra-ui/react';
 import {Formik, FormikConfig} from 'formik';
 import {InputControl} from 'formik-chakra-ui';
 
+//icons
+import {IoMdMail} from 'react-icons/io';
+
 enum FORM_KEYS {
   EMAIL = 'email',
 }
@@ -73,6 +76,7 @@ const Newsletter = (): JSX.Element => {
               mt={2}
               onClick={submitForm}
               isLoading={loading}
+              leftIcon={<IoMdMail />}
             >
               Subscribe
             </Button>

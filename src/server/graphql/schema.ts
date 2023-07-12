@@ -90,6 +90,17 @@ export const typeDefs = `#graphql
     createdAt: String!
   }
 
+  type CartItem{
+    food: Food!
+    count: Int!
+  }
+
+  type Cart{
+    id: String!
+    items: [CartItem]!
+    userId: String!
+  }
+
   enum BookingType {
     UPCOMING
     PENDING
@@ -104,6 +115,7 @@ export const typeDefs = `#graphql
     readOrders: [Order]!
     fetchFoodItem(foodItemId: String!): Food
     fetchTableBookings(bookingType: BookingType!): [TableBooking]!
+    readCartItems: Cart!
   }
 
   input CreateFeedbackInput {
@@ -162,5 +174,7 @@ export const typeDefs = `#graphql
     createTableBooking(createTableBookingInput: CreateTableBookingInput!): TableBooking!
     cancelTableBooking(id: ID!): TableBooking!
     confirmTableBooking(id: ID!): TableBooking!
+    addItemInCart(foodId: String!): Cart!
+    removeItemFromCart(foodId: String!): Cart!
   }
 `;

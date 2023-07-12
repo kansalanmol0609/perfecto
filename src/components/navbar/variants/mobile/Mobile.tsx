@@ -52,8 +52,9 @@ const Mobile = (): JSX.Element => {
         <Button
           aria-label="Open Navbar"
           variant="unstyled"
-          color="gray"
+          color={isOpen ? 'white' : 'gray'}
           leftIcon={<HamburgerIcon />}
+          _hover={{textDecoration: 'none', color: 'white'}}
           display="flex"
           alignItems="center"
           textTransform="uppercase"

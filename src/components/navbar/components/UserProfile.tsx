@@ -7,6 +7,7 @@ import {signIn, signOut, useSession} from 'next-auth/react';
 import {
   Avatar,
   Button,
+  Icon,
   Link,
   Menu,
   MenuButton,
@@ -14,6 +15,9 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
+
+//icons
+import {BsFillPersonFill} from 'react-icons/bs';
 
 const UserProfile = (): JSX.Element => {
   const session = useSession();
@@ -26,10 +30,11 @@ const UserProfile = (): JSX.Element => {
       <Button
         colorScheme="brand"
         fontSize="sm"
-        display="inline-block"
+        display="flex"
         textAlign="start"
         onClick={handleSignIn}
         isLoading={session.status === 'loading'}
+        leftIcon={<BsFillPersonFill size="24" />}
       >
         Sign In
       </Button>
@@ -40,13 +45,8 @@ const UserProfile = (): JSX.Element => {
 
   return (
     <Menu>
-      <MenuButton textAlign="left">
-        <Avatar
-          src={session.data.user?.image || ''}
-          name={user?.name ?? 'User'}
-          size="sm"
-          borderRadius={0}
-        />
+      <MenuButton textAlign="left" color="white" _hover={{color: 'brand.500'}}>
+        <Icon as={BsFillPersonFill} ml={-2} boxSize={8} />
       </MenuButton>
       <MenuList>
         <MenuGroup title={user?.name || 'User'}>

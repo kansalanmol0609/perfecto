@@ -138,13 +138,14 @@ model Order {
 }
 
 model CartItem {
-  food   Food    @relation(fields: [foodId], references: [id])
-  foodId String  @unique
+  food   Food   @relation(fields: [foodId], references: [id])
+  foodId String
   count  Int
-  cart   Cart?   @relation(fields: [cartId], references: [id])
-  cartId String?
+  cart   Cart   @relation(fields: [cartId], references: [id])
+  cartId String
 
-  @@index([foodId])
+  @@unique([foodId, cartId])
+  @@index([foodId, cartId])
   @@index([cartId])
 }
 
@@ -192,7 +193,7 @@ model Food {
   user        User         @relation(fields: [userId], references: [id])
   userId      String
   orderItem   OrderItem[]
-  cartItem    CartItem?
+  cartItem    CartItem[]
 
   @@index([userId])
 }

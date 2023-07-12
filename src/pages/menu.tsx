@@ -52,7 +52,7 @@ const READ_FOOD_ITEMS_QUERY = gql`
 `;
 
 const MenuPageBody = withAuthentication({
-  routeType: ROUTE_TYPE.PRIVATE,
+  routeType: ROUTE_TYPE.PUBLIC,
 })(() => {
   const {loading, error, data, refetch} = useQuery<{readFoodItems: Array<Food>}>(
     READ_FOOD_ITEMS_QUERY,

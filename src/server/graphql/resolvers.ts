@@ -5,6 +5,7 @@ import {readFoodItems} from './queries/readFoodItems';
 import {readOrders} from './queries/readOrders';
 import {fetchFoodItem} from './queries/fetchFoodItem';
 import {fetchTableBookings} from './queries/fetchTableBookings';
+import {readCartItems} from './queries/readCartItems';
 
 //mutations
 import {createNewsLetterSubscriber} from './mutations/createNewsLetterSubscriber';
@@ -17,6 +18,8 @@ import {sendEmailToNewsLetterSubscribers} from './mutations/sendEmailToNewsLette
 import {createTableBooking} from './mutations/createTableBooking';
 import {cancelTableBooking} from './mutations/cancelTableBooking';
 import {confirmTableBooking} from './mutations/confirmTableBooking';
+import {addItemInCart} from './mutations/addItemInCart';
+import {removeItemFromCart} from './mutations/removeItemFromCart';
 
 export const resolvers = {
   Query: {
@@ -26,6 +29,7 @@ export const resolvers = {
     readOrders,
     fetchFoodItem,
     fetchTableBookings,
+    readCartItems,
   },
 
   Mutation: {
@@ -39,5 +43,7 @@ export const resolvers = {
     createTableBooking,
     cancelTableBooking,
     confirmTableBooking,
+    addItemInCart,
+    removeItemFromCart,
   },
 };

@@ -1,15 +1,41 @@
 //libs
-import {memo} from 'react';
+import {memo, useCallback} from 'react';
 import Dinero from 'dinero.js';
 
 //components
-import {Box, Button, Image} from '@chakra-ui/react';
+import {Box, Button, IconButton, Image, Spinner} from '@chakra-ui/react';
+
+//hooks
+import {useFoodCountMap} from '@/hooks/useFoodCountMap';
+import {useAddFoodItemInCart} from '@/hooks/useAddFoodItemInCart';
+import {useRemoveFoodItemFromCart} from '@/hooks/useRemoveFoodItemFromCart';
 
 //types
 import {Food} from '@prisma/client';
 
-// eslint-disable-next-line react/display-name
-const FoodItemCard = memo(({item}: {item: Food}): JSX.Element => {
+//icons
+import {AddIcon, MinusIcon} from '@chakra-ui/icons';
+
+const FoodItemCard = ({item}: {item: Food}): JSX.Element => {
+  const {foodCountMap, loading} = useFoodCountMap();
+
+  const count = foodCountMap?.[item.id] ?? 0;
+
+  const {addItemInCart, loading: isAddingItemInCart} = useAddFoodItemInCart();
+  const {removeItemFromCart, loading: isRemovingItemFromCart} = useRemoveFoodItemFromCart();
+
+  const handleAddItemInCart = useCallback(
+    () => addItemInCart({variables: {foodId: item.id}}),
+    [addItemInCart, item.id],
+  );
+
+  const handleRemoveItemFromCart = useCallback(
+    () => removeItemFromCart({variables: {foodId: item.id}}),
+    [item.id, removeItemFromCart],
+  );
+
+  const isUpdatingCart = isAddingItemInCart || isRemovingItemFromCart;
+
   return (
     <Box display="flex" borderWidth={1} borderStyle="solid" borderColor="black.400" width="full">
       <Image
@@ -52,12 +78,58 @@ const FoodItemCard = memo(({item}: {item: Food}): JSX.Element => {
           <Box fontSize={{sm: 'sm'}}>{item.description}</Box>
         </Box>
 
-        <Button colorScheme="brand" aria-label="Order now" variant="solid" fontSize={{sm: 'sm'}}>
-          Order now
-        </Button>
+        {count ? (
+          <Box display="flex" gap={0} alignItems="center" width="full">
+            <Box
+              display="flex"
+              gap={0}
+              alignItems="center"
+              width="64%"
+              borderColor="blackAlpha.500"
+              borderStyle="solid"
+              borderWidth={1}
+            >
+              <IconButton
+                colorScheme="brand"
+                variant="solid"
+                aria-label="Add Item"
+                onClick={handleRemoveItemFromCart}
+                disabled={isUpdatingCart}
+              >
+                <MinusIcon />
+              </IconButton>
+
+              <Box flex={1} textAlign="center" fontWeight="semibold">
+                {count}
+              </Box>
+
+              <IconButton
+                colorScheme="brand"
+                variant="solid"
+                aria-label="Add"
+                icon={<AddIcon />}
+                onClick={handleAddItemInCart}
+                disabled={isUpdatingCart}
+              />
+            </Box>
+            {isUpdatingCart ? <Spinner ml={4} /> : null}
+          </Box>
+        ) : (
+          <Button
+            isLoading={loading || isUpdatingCart}
+            loadingText={isUpdatingCart ? 'Add To Cart' : ''}
+            colorScheme="brand"
+            aria-label="Order now"
+            variant="solid"
+            fontSize={{sm: 'xs', md: 'sm'}}
+            onClick={handleAddItemInCart}
+          >
+            Add To Cart
+          </Button>
+        )}
       </Box>
     </Box>
   );
-});
+};
 
 export default memo(FoodItemCard);

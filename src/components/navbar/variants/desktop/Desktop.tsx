@@ -3,9 +3,10 @@ import {memo, useCallback} from 'react';
 import NextLink from 'next/link';
 
 //components
-import {Box} from '@chakra-ui/react';
+import {Box, Center, Divider, HStack} from '@chakra-ui/react';
 import {Link} from '@chakra-ui/react';
 import {UserProfile} from '../../components/UserProfile';
+import {Cart} from '../../components/cart';
 
 //hooks
 import {useRouter} from 'next/router';
@@ -80,7 +81,14 @@ const Desktop = (): JSX.Element => {
             </Link>
           ) : null}
 
-          <UserProfile />
+          <Center height="10">
+            <Divider orientation="vertical" />
+          </Center>
+
+          <HStack display="flex">
+            <Cart />
+            <UserProfile />
+          </HStack>
         </Box>
       </Box>
     </Box>
