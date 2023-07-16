@@ -2,7 +2,7 @@
 import {gql, useMutation} from '@apollo/client';
 
 //types
-import {Cart, CartItem, Food} from '@prisma/client';
+import {Cart} from '@/types/Cart';
 
 const ADD_ITEM_IN_CART_MUTATION = gql`
   mutation AddItemInCart($foodId: String!) {
@@ -35,7 +35,7 @@ const ADD_ITEM_IN_CART_MUTATION = gql`
 
 export const useAddFoodItemInCart = () => {
   const [addItemInCart, {loading}] = useMutation<
-    {addItemInCart: Cart & {items: Array<Omit<CartItem, 'foodId'> & {food: Food}>}},
+    {addItemInCart: Cart},
     {
       foodId: string;
     }

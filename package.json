@@ -11,7 +11,8 @@
     "prisma-studio": "npx prisma studio",
     "prisma-migrate": "npx prisma migrate dev",
     "prisma-pull": "npx prisma db pull",
-    "prisma-push": "npx prisma db push"
+    "prisma-push": "npx prisma db push",
+    "tsc": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",

@@ -1,22 +1,25 @@
 //libs
-import {memo, useState, useCallback, useMemo} from 'react';
+import {memo, useState, useCallback} from 'react';
 
 //components
-import {Badge, Box, Icon, useMediaQuery} from '@chakra-ui/react';
+import {Badge, Box, Icon} from '@chakra-ui/react';
 
 //icons
 import {FaShoppingCart} from 'react-icons/fa';
-import {Cart, CartItem} from '@prisma/client';
+import {Cart} from '@/types/Cart';
 
-type Props = {cart: Cart | undefined; loading: boolean};
+//utils
+import {getCartItemsCount} from '../utils/getCartItemsCount';
 
-const Desktop = ({cart, loading}: Props): JSX.Element => {
+type Props = {
+  cart: Cart | undefined;
+  loading: boolean;
+};
+
+const Desktop = ({cart}: Props): JSX.Element => {
   const [isHovering, setIsHovering] = useState(false);
 
-  const count = (cart?.items as unknown as Array<CartItem>)?.reduce(
-    (res, cartItem) => res + cartItem.count,
-    0,
-  );
+  const count = getCartItemsCount(cart);
 
   const handleMouseOver = useCallback(() => {
     setIsHovering(true);

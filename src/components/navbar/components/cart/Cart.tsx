@@ -10,7 +10,7 @@ import DesktopCart from './variants/Desktop';
 import {useIsMobileDevice} from '@/hooks/useIsMobileDevice';
 
 //types
-import {Cart} from '@prisma/client';
+import {Cart} from '@/types/Cart';
 
 const READ_CART_ITEMS = gql`
   query ReadCartItems {

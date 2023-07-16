@@ -3,10 +3,11 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
+import {Cart} from '@/types/Cart';
 
 export const readCartItems = withAuthentication({
   apiType: API_TYPE.PRIVATE,
-})(async (_parent: any, _args: any, ctx: GraphQLContext) => {
+})(async (_parent: any, _args: any, ctx: GraphQLContext): Promise<Cart> => {
   const session = ctx.session;
 
   let cart = await ctx.prisma.cart.findUnique({
