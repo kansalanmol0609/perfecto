@@ -20,6 +20,9 @@ import {cancelTableBooking} from './mutations/cancelTableBooking';
 import {confirmTableBooking} from './mutations/confirmTableBooking';
 import {addItemInCart} from './mutations/addItemInCart';
 import {removeItemFromCart} from './mutations/removeItemFromCart';
+import {addAddress} from './mutations/addAddress';
+import {removeAddress} from './mutations/removeAddress';
+import {updateAddress} from './mutations/updateAddress';
 
 export const resolvers = {
   Query: {
@@ -45,5 +48,8 @@ export const resolvers = {
     confirmTableBooking,
     addItemInCart,
     removeItemFromCart,
+    addAddress,
+    removeAddress,
+    updateAddress,
   },
 };

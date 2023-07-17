@@ -64,6 +64,19 @@ export const typeDefs = `#graphql
     ADMIN
   }
 
+  type Address {
+    id: String!
+    line1: String!
+    line2: String
+    city: String!
+    state: String!
+    country: String!
+    pinCode: String!
+    createdAt: String!
+    updatedAt: String!
+    userId: String!
+  }
+
   type User {
     id: String!
     name: String
@@ -73,6 +86,7 @@ export const typeDefs = `#graphql
     createdAt: String
     updatedAt: String
     role: UserRole!
+    addresses: [Address]!
   }
 
   type TableBooking {
@@ -163,6 +177,15 @@ export const typeDefs = `#graphql
     date: String!
   }
 
+  input AddressInput {
+    line1: String!
+    line2: String
+    city: String!
+    state: String!
+    country: String!
+    pinCode: String!
+  }
+
   type Mutation {
     createFeedback(feedbackInput: CreateFeedbackInput!): Feedback!
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
@@ -176,5 +199,8 @@ export const typeDefs = `#graphql
     confirmTableBooking(id: ID!): TableBooking!
     addItemInCart(foodId: String!): Cart!
     removeItemFromCart(foodId: String!): Cart!
+    addAddress(addressInput: AddressInput!): Address!
+    updateAddress(addressId: String!, addressInput: AddressInput!): Address!
+    removeAddress(addressId: String!): Address!
   }
 `;

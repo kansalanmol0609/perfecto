@@ -1,13 +1,16 @@
 //libs
 import {gql, useQuery} from '@apollo/client';
-import {memo} from 'react';
 import {useSession} from 'next-auth/react';
+import {memo, useState, useCallback} from 'react';
 
 //components
-import DesktopCart from './variants/Desktop';
+import {Badge, Box, Icon} from '@chakra-ui/react';
 
-//hooks
-import {useIsMobileDevice} from '@/hooks/useIsMobileDevice';
+//icons
+import {FaShoppingCart} from 'react-icons/fa';
+
+//utils
+import {getCartItemsCount} from './utils/getCartItemsCount';
 
 //types
 import {Cart} from '@/types/Cart';
@@ -27,19 +30,50 @@ const READ_CART_ITEMS = gql`
 const Cart = () => {
   const session = useSession();
 
-  const {data, loading} = useQuery<{
+  const {data} = useQuery<{
     readCartItems: Cart;
   }>(READ_CART_ITEMS, {
     skip: session.status !== 'authenticated',
   });
 
-  const isMobileDevice = useIsMobileDevice();
+  const [isHovering, setIsHovering] = useState(false);
+
+  const cart = data?.readCartItems;
+
+  const count = getCartItemsCount(cart);
+
+  const handleMouseOver = useCallback(() => {
+    setIsHovering(true);
+  }, []);
+
+  const handleMouseOut = useCallback(() => {
+    setIsHovering(false);
+  }, []);
 
   if (session.status !== 'authenticated') {
     return null;
   }
 
-  return isMobileDevice ? null : <DesktopCart cart={data?.readCartItems} loading={loading} />;
+  return (
+    <Box as="button" aria-label="Cart" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <Icon
+        as={FaShoppingCart}
+        boxSize={{base: 4, md: 6}}
+        color={isHovering ? 'brand.500' : 'white'}
+      />
+
+      <Badge
+        transform="translate(-50%, -100%)"
+        borderRadius={12}
+        bg="brand.500"
+        color="white"
+        fontSize={{base: 8, md: 12}}
+        fontWeight="medium"
+      >
+        {count ?? 0}
+      </Badge>
+    </Box>
+  );
 };
 
 const MemoizedCart = memo(Cart);

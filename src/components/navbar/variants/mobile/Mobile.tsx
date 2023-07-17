@@ -3,8 +3,20 @@ import {memo, useCallback} from 'react';
 import NextLink from 'next/link';
 
 //components
-import {Box, Button, Collapse, Link, useDisclosure} from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Collapse,
+  Divider,
+  HStack,
+  Icon,
+  IconButton,
+  Link,
+  useDisclosure,
+} from '@chakra-ui/react';
 import {UserProfile} from '../../components/UserProfile';
+import {Cart} from '../../components/cart';
 
 //hooks
 import {useRouter} from 'next/router';
@@ -49,19 +61,24 @@ const Mobile = (): JSX.Element => {
           Perfecto
         </Box>
 
-        <Button
-          aria-label="Open Navbar"
-          variant="unstyled"
-          color={isOpen ? 'white' : 'gray'}
-          leftIcon={<HamburgerIcon />}
-          _hover={{textDecoration: 'none', color: 'white'}}
-          display="flex"
-          alignItems="center"
-          textTransform="uppercase"
-          onClick={onToggle}
-        >
-          Menu
-        </Button>
+        <HStack gap={2}>
+          <Cart />
+          <UserProfile />
+          <Center height="8">
+            <Divider orientation="vertical" />
+          </Center>
+
+          <Box as="button" aria-label="Menu">
+            <Icon
+              as={HamburgerIcon}
+              boxSize={{base: 4, md: 6}}
+              mb={2}
+              color="white"
+              _hover={{color: 'brand.500'}}
+              onClick={onToggle}
+            />
+          </Box>
+        </HStack>
       </Box>
 
       <Collapse in={isOpen} animateOpacity>
@@ -90,8 +107,6 @@ const Mobile = (): JSX.Element => {
               Book a Table
             </Link>
           ) : null}
-
-          <UserProfile />
         </Box>
       </Collapse>
     </Box>

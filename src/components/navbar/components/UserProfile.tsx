@@ -45,8 +45,8 @@ const UserProfile = (): JSX.Element => {
 
   return (
     <Menu>
-      <MenuButton textAlign="left" color="white" _hover={{color: 'brand.500'}}>
-        <Icon as={BsFillPersonFill} ml={-2} boxSize={8} />
+      <MenuButton color="white" _hover={{color: 'brand.500'}}>
+        <Icon as={BsFillPersonFill} ml={-2} boxSize={{base: 4, md: 8}} />
       </MenuButton>
       <MenuList>
         <MenuGroup title={user?.name || 'User'}>

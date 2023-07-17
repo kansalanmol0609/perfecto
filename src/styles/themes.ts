@@ -173,5 +173,21 @@ export const THEME = extendTheme({
     },
 
     Tabs: tabsTheme,
+
+    Menu: {
+      baseStyle: {
+        list: {
+          borderRadius: '0px',
+          border: '0px',
+        },
+        item: {
+          borderRadius: '0px',
+          _focus: {
+            backgroundColor: 'brand.500',
+            color: 'white',
+          },
+        },
+      },
+    },
   },
 });
