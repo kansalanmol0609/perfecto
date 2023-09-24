@@ -2,6 +2,7 @@
 import {gql, useQuery} from '@apollo/client';
 import {useSession} from 'next-auth/react';
 import {memo, useState, useCallback} from 'react';
+import {useRouter} from 'next/router';
 
 //components
 import {Badge, Box, Icon} from '@chakra-ui/react';
@@ -29,6 +30,7 @@ const READ_CART_ITEMS = gql`
 
 const Cart = () => {
   const session = useSession();
+  const {push} = useRouter();
 
   const {data} = useQuery<{
     readCartItems: Cart;
@@ -50,12 +52,22 @@ const Cart = () => {
     setIsHovering(false);
   }, []);
 
+  const goToCart = useCallback(() => {
+    push('/cart');
+  }, [push]);
+
   if (session.status !== 'authenticated') {
     return null;
   }
 
   return (
-    <Box as="button" aria-label="Cart" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <Box
+      as="button"
+      aria-label="Cart"
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onClick={goToCart}
+    >
       <Icon
         as={FaShoppingCart}
         boxSize={{base: 4, md: 6}}

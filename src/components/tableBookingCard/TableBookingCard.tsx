@@ -16,13 +16,14 @@ import {TableBooking, TableBookingStatus, User} from '@prisma/client';
 
 type Props = {
   tableBooking: Omit<TableBooking, 'userId'> & {user: User};
+  showActions?: boolean;
 };
 
-const TableBookingCard = ({tableBooking}: Props): JSX.Element => {
+const TableBookingCard = ({tableBooking, showActions: _showActions = true}: Props): JSX.Element => {
   const parsedDate = dayjs(+tableBooking.date);
 
   const showActions =
-    tableBooking.tableBookingStatus === TableBookingStatus.WAITING_FOR_CONFIRMATION;
+    tableBooking.tableBookingStatus === TableBookingStatus.WAITING_FOR_CONFIRMATION && _showActions;
 
   return (
     <HStack

@@ -43,14 +43,38 @@ export const typeDefs = `#graphql
     userId: String!
   }
 
-  type Order{
+  type Rating {
+    id: String!
+    rating: Int!
+    comment: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type OrderDTO{
     id: String!
     status:    OrderStatus
     createdAt: String!
     updatedAt: String!
     userId: String!
-    addressId: String!
-    ratingId: String!
+    address: Address!
+    rating: Rating
+  }
+
+  type OrderItem {
+    food: Food!
+    count: Int!
+  }
+
+  type Order{
+    id: String!
+    status:    OrderStatus
+    createdAt: String!
+    updatedAt: String!
+    user: User!
+    address: Address!
+    rating: Rating
+    items: [OrderItem]!
   }
 
   enum TableBookingStatus {
@@ -122,6 +146,22 @@ export const typeDefs = `#graphql
     CANCELLED
   }
 
+
+  type CompleteUser {
+    id: String!
+    name: String
+    email: String
+    emailVerified: String
+    image: String
+    createdAt: String
+    updatedAt: String
+    role: UserRole!
+    addresses: [Address]!
+    orders: [OrderDTO]!
+    tableBookings: [TableBooking]!
+  }
+
+
   type Query {
     readFeedbacks: [Feedback]!
     readNewsLetterSubscribers: [NewsLetterSubscriber]!
@@ -130,6 +170,8 @@ export const typeDefs = `#graphql
     fetchFoodItem(foodItemId: String!): Food
     fetchTableBookings(bookingType: BookingType!): [TableBooking]!
     readCartItems: Cart!
+    fetchUserDetails: CompleteUser!
+    readAddresses: [Address]!
   }
 
   input CreateFeedbackInput {
@@ -186,6 +228,11 @@ export const typeDefs = `#graphql
     pinCode: String!
   }
 
+  input OrderItemInput{
+    foodId: String!
+    count: Int!
+  }
+
   type Mutation {
     createFeedback(feedbackInput: CreateFeedbackInput!): Feedback!
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
@@ -202,5 +249,6 @@ export const typeDefs = `#graphql
     addAddress(addressInput: AddressInput!): Address!
     updateAddress(addressId: String!, addressInput: AddressInput!): Address!
     removeAddress(addressId: String!): Address!
+    placeOrder(addressId: String!, items: [OrderItemInput]!): Order!
   }
 `;

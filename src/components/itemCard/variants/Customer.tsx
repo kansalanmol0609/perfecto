@@ -84,7 +84,7 @@ const FoodItemCard = ({item}: {item: Food}): JSX.Element => {
               display="flex"
               gap={0}
               alignItems="center"
-              width="64%"
+              width={{base: '75%', md: '64%'}}
               borderColor="blackAlpha.500"
               borderStyle="solid"
               borderWidth={1}

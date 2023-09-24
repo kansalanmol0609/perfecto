@@ -6,6 +6,8 @@ import {readOrders} from './queries/readOrders';
 import {fetchFoodItem} from './queries/fetchFoodItem';
 import {fetchTableBookings} from './queries/fetchTableBookings';
 import {readCartItems} from './queries/readCartItems';
+import {fetchUserDetails} from './queries/fetchUserDetails';
+import {readAddresses} from './queries/readAddresses';
 
 //mutations
 import {createNewsLetterSubscriber} from './mutations/createNewsLetterSubscriber';
@@ -23,6 +25,7 @@ import {removeItemFromCart} from './mutations/removeItemFromCart';
 import {addAddress} from './mutations/addAddress';
 import {removeAddress} from './mutations/removeAddress';
 import {updateAddress} from './mutations/updateAddress';
+import {placeOrder} from './mutations/placeOrder';
 
 export const resolvers = {
   Query: {
@@ -33,6 +36,8 @@ export const resolvers = {
     fetchFoodItem,
     fetchTableBookings,
     readCartItems,
+    fetchUserDetails,
+    readAddresses,
   },
 
   Mutation: {
@@ -51,5 +56,6 @@ export const resolvers = {
     addAddress,
     removeAddress,
     updateAddress,
+    placeOrder,
   },
 };

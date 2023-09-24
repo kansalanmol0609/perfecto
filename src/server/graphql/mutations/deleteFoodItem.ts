@@ -9,9 +9,12 @@ export const deleteFoodItem = withAuthentication({
 })(async (_parent: any, args: {foodItemId: string}, ctx: GraphQLContext) => {
   const {foodItemId} = args;
 
-  const deletedFoodItem = await ctx.prisma.food.delete({
+  const deletedFoodItem = await ctx.prisma.food.update({
     where: {
       id: foodItemId,
+    },
+    data: {
+      isDeleted: true,
     },
   });
 

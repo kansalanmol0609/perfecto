@@ -21,10 +21,16 @@ export const updateFoodItem = withAuthentication({
 })(async (_parent: any, args: {updateFoodItemInput: UpdateFoodItemInput}, ctx: GraphQLContext) => {
   const {updateFoodItemInput} = args;
 
-  const food = await ctx.prisma.food.update({
+  await ctx.prisma.food.update({
     where: {
       id: updateFoodItemInput.id,
     },
+    data: {
+      isDeleted: true,
+    },
+  });
+
+  const newFood = await ctx.prisma.food.create({
     data: {
       name: updateFoodItemInput.name,
       description: updateFoodItemInput.description,
@@ -33,8 +39,14 @@ export const updateFoodItem = withAuthentication({
       inStock: updateFoodItemInput.inStock,
       price: updateFoodItemInput.price,
       category: updateFoodItemInput.category,
+      user: {
+        connect: {
+          id: ctx.session!.user!.id,
+        },
+      },
+      isDeleted: false,
     },
   });
 
-  return food;
+  return newFood;
 });

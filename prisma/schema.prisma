@@ -111,12 +111,11 @@ enum OrderStatus {
 }
 
 model OrderItem {
-  food         Food    @relation(fields: [foodId], references: [id])
-  foodId       String  @unique
-  pricePerUnit Float
-  count        Int
-  order        Order?  @relation(fields: [orderId], references: [id])
-  orderId      String?
+  food    Food    @relation(fields: [foodId], references: [id])
+  foodId  String  @unique
+  count   Int
+  order   Order?  @relation(fields: [orderId], references: [id])
+  orderId String?
 
   @@index([foodId])
   @@index([orderId])
@@ -140,7 +139,7 @@ model Order {
 }
 
 model CartItem {
-  food   Food   @relation(fields: [foodId], references: [id])
+  food   Food   @relation(fields: [foodId], references: [id]) //itemType, itemId
   foodId String
   count  Int
   cart   Cart   @relation(fields: [cartId], references: [id])
@@ -186,8 +185,9 @@ model Food {
   name        String
   description String
   pictures    String
-  isVeg       Boolean
+  isVeg       Boolean //MenuItem
   inStock     Boolean
+  isDeleted   Boolean      @default(false)
   price       Json // {amount: string; currency: string}
   category    FoodCategory
   createdAt   DateTime     @default(now())

@@ -11,6 +11,8 @@ import React, {
 //components
 import {MakeReservationModal} from './modals/makeReservationModal';
 import {ConfirmationModal} from './modals/confirmationModal';
+import {AddAddressModal} from './modals/addAddressModal';
+import {EditAddressModal} from './modals/editAddressModal';
 
 //types
 import {Action, GlobalModalContextType, State} from './types';
@@ -49,6 +51,24 @@ export const GlobalModalContextProvider = ({children}: {children: ReactElement})
         break;
       }
 
+      case MODAL_TYPES.ADD_ADDRESS_MODAL: {
+        setState({
+          type: action.type,
+          props: action.payload.props,
+        });
+
+        break;
+      }
+
+      case MODAL_TYPES.EDIT_ADDRESS_MODAL: {
+        setState({
+          type: action.type,
+          props: action.payload.props,
+        });
+
+        break;
+      }
+
       default:
         setState(undefined);
     }
@@ -65,6 +85,12 @@ export const GlobalModalContextProvider = ({children}: {children: ReactElement})
 
       case MODAL_TYPES.CONFIRMATION_MODAL:
         return <ConfirmationModal {...state.props} />;
+
+      case MODAL_TYPES.ADD_ADDRESS_MODAL:
+        return <AddAddressModal {...state.props} />;
+
+      case MODAL_TYPES.EDIT_ADDRESS_MODAL:
+        return <EditAddressModal {...state.props} />;
 
       default:
         return null;

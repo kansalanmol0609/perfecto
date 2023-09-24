@@ -40,6 +40,7 @@ export const createFood = withAuthentication({
         price: createFoodInput.price,
         category: createFoodInput.category,
         userId: session!.user!.id,
+        isDeleted: false,
       },
     });
 
