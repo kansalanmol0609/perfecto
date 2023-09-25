@@ -172,6 +172,7 @@ export const typeDefs = `#graphql
     readCartItems: Cart!
     fetchUserDetails: CompleteUser!
     readAddresses: [Address]!
+    fetchOrderDetails(orderId: String!): Order
   }
 
   input CreateFeedbackInput {

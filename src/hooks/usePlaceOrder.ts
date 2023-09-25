@@ -6,6 +6,7 @@ import {Address, Order} from '@prisma/client';
 
 //hooks
 import {useToast} from '@chakra-ui/react';
+import {useRouter} from 'next/router';
 
 const PLACE_ORDER_MUTATION = gql`
   mutation PlaceOrder($addressId: String!, $items: [OrderItemInput]!) {
@@ -60,6 +61,7 @@ const PLACE_ORDER_MUTATION = gql`
 
 export const usePlaceOrder = () => {
   const toast = useToast();
+  const {push} = useRouter();
 
   const [placeOrder, {loading}] = useMutation<
     {
@@ -79,6 +81,8 @@ export const usePlaceOrder = () => {
         description: 'Order Placed Successfully.',
         status: 'success',
       });
+
+      push(`/order/${data.placeOrder.id}`);
     },
 
     onError(error) {

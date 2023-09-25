@@ -8,6 +8,7 @@ import {fetchTableBookings} from './queries/fetchTableBookings';
 import {readCartItems} from './queries/readCartItems';
 import {fetchUserDetails} from './queries/fetchUserDetails';
 import {readAddresses} from './queries/readAddresses';
+import {fetchOrderDetails} from './queries/fetchOrderDetails';
 
 //mutations
 import {createNewsLetterSubscriber} from './mutations/createNewsLetterSubscriber';
@@ -38,6 +39,7 @@ export const resolvers = {
     readCartItems,
     fetchUserDetails,
     readAddresses,
+    fetchOrderDetails,
   },
 
   Mutation: {

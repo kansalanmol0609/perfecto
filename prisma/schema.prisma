@@ -111,14 +111,15 @@ enum OrderStatus {
 }
 
 model OrderItem {
+  id      String  @id @default(cuid())
   food    Food    @relation(fields: [foodId], references: [id])
-  foodId  String  @unique
+  foodId  String
   count   Int
   order   Order?  @relation(fields: [orderId], references: [id])
   orderId String?
 
-  @@index([foodId])
   @@index([orderId])
+  @@index([foodId])
 }
 
 model Order {
