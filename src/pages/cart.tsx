@@ -23,7 +23,9 @@ import {
   Radio,
   RadioGroup,
   Tooltip,
+  Icon,
 } from '@chakra-ui/react';
+import {BiSolidCart} from 'react-icons/bi';
 import {FullPageLoader} from '@/components/FullPageLoader';
 import {FullPageErrorScreen} from '@/components/FullPageErrorScreen';
 import FoodItemCard from '@/components/itemCard/variants/Customer';
@@ -134,6 +136,15 @@ const CartPageBody = withAuthentication({
 
   if (error || addressError) {
     return <FullPageErrorScreen refetch={error ? refetch : refetchAddress} />;
+  }
+
+  if (_isEmpty(items)) {
+    return (
+      <VStack gap={4} justifyContent="center" height="60vh">
+        <Icon as={BiSolidCart} boxSize={20} />
+        <Box>Your cart is empty! Please add items to your cart by going to the menu page.</Box>
+      </VStack>
+    );
   }
 
   const totalPrice = +items.reduce((acc, item) => {
