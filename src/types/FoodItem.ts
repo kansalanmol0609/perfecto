@@ -9,4 +9,5 @@ export type FoodItem = {
   };
   primaryImageUrl: string;
   secondaryImagesUrls: Array<string>;
+  name: string;
 };

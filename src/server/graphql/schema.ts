@@ -157,7 +157,7 @@ export const typeDefs = `#graphql
     updatedAt: String
     role: UserRole!
     addresses: [Address]!
-    orders: [OrderDTO]!
+    orders: [Order]!
     tableBookings: [TableBooking]!
   }
 

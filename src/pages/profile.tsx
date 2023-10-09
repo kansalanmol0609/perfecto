@@ -9,6 +9,7 @@ import {FullPageErrorScreen} from '@/components/FullPageErrorScreen';
 import {SideBar} from '@/components/sideBar';
 import UserTableBookings from '@/modules/userProfile/UserTableBookings';
 import UserAddresses from '@/modules/userProfile/UserAddresses';
+import UserOrders from '@/modules/userProfile/UserOrders';
 
 //hooks
 import {useFetchUserDetails} from '@/modules/userProfile/hooks/useFetchUserDetails';
@@ -23,7 +24,7 @@ const config = {
   orders: {
     title: 'Orders',
     icon: FiShoppingBag,
-    component: () => <div>Orders</div>,
+    component: () => <UserOrders />,
   },
   addresses: {
     title: 'Addresses',

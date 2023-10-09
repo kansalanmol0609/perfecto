@@ -1,12 +1,26 @@
 //libs
+import {FoodItem} from '@/types/FoodItem';
 import {gql, useQuery} from '@apollo/client';
 
 //types
-import {Address, User as BaseUser, Order as BaseOrder, TableBooking, Rating} from '@prisma/client';
+import {
+  Address,
+  User as BaseUser,
+  Order as BaseOrder,
+  TableBooking,
+  Rating,
+  Food,
+} from '@prisma/client';
 
 type User = BaseUser & {
   addresses: Address[];
-  orders: Array<Omit<BaseOrder, 'ratingId'> & {rating: Rating | null}>;
+  orders: Array<
+    Omit<BaseOrder, 'ratingId'> & {
+      items: Array<{food: Food; count: number}> | null;
+      address: Address | null;
+      rating: Rating | null;
+    }
+  >;
   tableBookings: Array<Omit<TableBooking, 'userId'> & {user: User}>;
 };
 
@@ -36,8 +50,6 @@ const FETCH_USER_DETAILS_QUERY = gql`
         id
         status
         createdAt
-        updatedAt
-        userId
         address {
           id
           line1
@@ -46,15 +58,24 @@ const FETCH_USER_DETAILS_QUERY = gql`
           state
           country
           pinCode
-          createdAt
-          updatedAt
         }
         rating {
           id
           rating
           comment
           createdAt
-          updatedAt
+        }
+        items {
+          food {
+            name
+            id
+            price {
+              amount
+              currency
+              precision
+            }
+          }
+          count
         }
       }
       tableBookings {
