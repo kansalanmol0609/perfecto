@@ -27,6 +27,7 @@ import {addAddress} from './mutations/addAddress';
 import {removeAddress} from './mutations/removeAddress';
 import {updateAddress} from './mutations/updateAddress';
 import {placeOrder} from './mutations/placeOrder';
+import {updateUser} from './mutations/updateUser';
 
 export const resolvers = {
   Query: {
@@ -59,5 +60,6 @@ export const resolvers = {
     removeAddress,
     updateAddress,
     placeOrder,
+    updateUser,
   },
 };

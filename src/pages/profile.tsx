@@ -10,12 +10,13 @@ import {SideBar} from '@/components/sideBar';
 import UserTableBookings from '@/modules/userProfile/UserTableBookings';
 import UserAddresses from '@/modules/userProfile/UserAddresses';
 import UserOrders from '@/modules/userProfile/UserOrders';
+import UserSettings from '@/modules/userProfile/UserSettings';
 
 //hooks
 import {useFetchUserDetails} from '@/modules/userProfile/hooks/useFetchUserDetails';
 
 //icons
-import {FiShoppingBag, FiCalendar, FiMapPin} from 'react-icons/fi';
+import {FiShoppingBag, FiCalendar, FiMapPin, FiSettings} from 'react-icons/fi';
 
 //decorators
 import {withAuthentication, ROUTE_TYPE} from '@/decorators/withAuthentication';
@@ -35,6 +36,11 @@ const config = {
     title: 'Table Bookings',
     icon: FiCalendar,
     component: UserTableBookings,
+  },
+  settings: {
+    title: 'Settings',
+    icon: FiSettings,
+    component: () => <UserSettings />,
   },
 };
 

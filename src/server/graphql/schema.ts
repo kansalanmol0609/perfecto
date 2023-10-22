@@ -234,6 +234,10 @@ export const typeDefs = `#graphql
     count: Int!
   }
 
+  input UpdateUserInput{
+    name: String!
+  }
+
   type Mutation {
     createFeedback(feedbackInput: CreateFeedbackInput!): Feedback!
     createNewsLetterSubscriber(email: String!): NewsLetterSubscriber!
@@ -251,5 +255,6 @@ export const typeDefs = `#graphql
     updateAddress(addressId: String!, addressInput: AddressInput!): Address!
     removeAddress(addressId: String!): Address!
     placeOrder(addressId: String!, items: [OrderItemInput]!): Order!
+    updateUser(updateUserInput: UpdateUserInput!): User!
   }
 `;
