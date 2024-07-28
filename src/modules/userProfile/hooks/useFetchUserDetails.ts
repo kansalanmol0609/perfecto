@@ -1,5 +1,4 @@
 //libs
-import {FoodItem} from '@/types/FoodItem';
 import {gql, useQuery} from '@apollo/client';
 
 //types

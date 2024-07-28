@@ -30,7 +30,16 @@ import {BiFoodMenu} from 'react-icons/bi';
 import {withAuthentication, ROUTE_TYPE} from '@/decorators/withAuthentication';
 
 //types
-import {Order} from '@prisma/client';
+import {Address, Food, Order as PrismaOrder, Rating} from '@prisma/client';
+
+type Order = Omit<PrismaOrder, 'userId' | 'addressId' | 'ratingId'> & {
+  address: Address;
+  rating: Rating;
+  items: Array<{
+    food: Food;
+    count: number;
+  }>;
+};
 
 const FETCH_ORDER_DETAILS = gql`
   query FetchOrderDetails($orderId: String!) {
@@ -196,7 +205,7 @@ const OrderDetailsPageBody = withAuthentication({
               <HStack key={item.food.id} justifyContent="space-between" width="full">
                 <Box>{item.food.name}</Box>
                 <Box>
-                  {item.count} x (${+item.food.price.amount}/unit)
+                  {item.count} x (${+(item.food.price as {amount: string}).amount}/unit)
                 </Box>
               </HStack>
             ))}

@@ -1,7 +1,7 @@
 //types
 import {CarouselCard} from '@/components/carouselSection/types';
 import {Blog} from '@/types/Blog';
-import {FoodItem} from '@/types/FoodItem';
+import {Food} from '@prisma/client';
 
 export const HOME_PAGE_CAROUSEL_CARDS: Array<CarouselCard> = [
   {
@@ -40,78 +40,83 @@ export const STATS = [
   },
 ];
 
-export const FOOD_ITEMS: Array<FoodItem> = [
+export const FOOD_ITEMS: Array<Omit<Food, 'isDeleted' | 'createdAt' | 'updatedAt' | 'userId'>> = [
   {
-    id: '65783iyet1g23bdvi7t23hdb',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
+    id: 'cljgri9uf002erl0odtf7m463',
+    name: 'Caesar Salad',
+    description:
+      'Crisp romaine lettuce, garlic croutons, and parmesan cheese tossed in a tangy Caesar dressing.',
+    pictures: 'https://example.com/caesar-salad.jpg',
+    isVeg: true,
+    inStock: true,
+    price: {
+      amount: '6.99',
+      currency: 'USD',
+      precision: null,
+      __typename: 'Price',
     },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-1.jpg.webp',
-    secondaryImagesUrls: [],
+    category: 'LUNCH',
   },
   {
-    id: '6578asdast1g23bdvi7t23hdb',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
+    id: 'cljgri9uf002frl0o5453ltvr',
+    name: 'Mushroom Risotto',
+    description: 'Creamy arborio rice cooked with mushrooms, onions, and parmesan cheese.',
+    pictures: 'https://example.com/mushroom-risotto.jpg',
+    isVeg: true,
+    inStock: true,
+    price: {
+      amount: '12.99',
+      currency: 'USD',
+      precision: null,
+      __typename: 'Price',
     },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-2.jpg.webp',
-    secondaryImagesUrls: [],
+    category: 'DINNER',
   },
   {
-    id: '657312egrd13yet1g23bdv4rf',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
+    id: 'cljgri9uf002grl0o3s705wnq',
+    name: 'Chocolate Cake',
+    description:
+      'Decadent chocolate cake with layers of rich chocolate ganache, topped with chocolate shavings.',
+    pictures: 'https://example.com/chocolate-cake.jpg',
+    isVeg: true,
+    inStock: true,
+    price: {
+      amount: '9.99',
+      currency: 'USD',
+      precision: null,
+      __typename: 'Price',
     },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-3.jpg.webp',
-    secondaryImagesUrls: [],
+    category: 'DESSERT',
   },
   {
-    id: '657312egrd13yet1g23bdbjcdbc',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
+    id: 'cljgri9uf002irl0o6b1fettq',
+    name: 'Chicken Alfredo Pasta',
+    description: 'Creamy pasta dish with tender chicken, Parmesan cheese, and garlic sauce.',
+    pictures: 'https://example.com/chicken-alfredo-pasta.jpg',
+    isVeg: false,
+    inStock: true,
+    price: {
+      amount: '1300',
+      currency: 'USD',
+      precision: 2,
+      __typename: 'Price',
     },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-4.jpg.webp',
-    secondaryImagesUrls: [],
+    category: 'DINNER',
   },
   {
-    id: '657312egrd13yet1g23bdbjc2387',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
+    id: 'cljgri9uf002jrl0o6a4969ww',
+    name: 'Veggie Wrap',
+    description: 'A healthy wrap filled with fresh vegetables, hummus, and a tangy dressing.',
+    pictures: 'https://example.com/veggie-wrap.jpg',
+    isVeg: true,
+    inStock: true,
+    price: {
+      amount: '7.99',
+      currency: 'USD',
+      precision: null,
+      __typename: 'Price',
     },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-5.jpg.webp',
-    secondaryImagesUrls: [],
-  },
-  {
-    id: '657312egrd13yet1g23bdbjc232dg',
-    title: 'Grilled Beef with potatoes',
-    description: 'Meat, Potatoes, Rice, Tomatoe',
-    pricePerUnit: 29,
-    amountPerUnit: {
-      quantity: 500,
-      unit: 'gm',
-    },
-    primaryImageUrl: 'https://preview.colorlib.com/theme/feliciano/images/breakfast-6.jpg.webp',
-    secondaryImagesUrls: [],
+    category: 'LUNCH',
   },
 ];
 
