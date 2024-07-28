@@ -1,6 +1,6 @@
 //libs
 import {gql, useMutation} from '@apollo/client';
-import {Food, FoodCategory} from '@prisma/client';
+import {Food, Food_category} from '@prisma/client';
 
 //hooks
 import {useToast} from '@chakra-ui/react';
@@ -42,7 +42,7 @@ export const useUpdateFood = () => {
           currency: string;
           precision?: number;
         };
-        category: FoodCategory;
+        category: Food_category;
       };
     }
   >(UPDATE_FOOD_ITEM_MUTATION, {

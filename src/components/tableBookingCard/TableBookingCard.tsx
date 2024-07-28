@@ -12,7 +12,7 @@ import {BsPeopleFill} from 'react-icons/bs';
 import {BiSolidTimeFive} from 'react-icons/bi';
 
 //types
-import {TableBooking, TableBookingStatus, User} from '@prisma/client';
+import {TableBooking, TableBooking_tableBookingStatus, User} from '@prisma/client';
 
 type Props = {
   tableBooking: Omit<TableBooking, 'userId'> & {user: User};
@@ -23,7 +23,8 @@ const TableBookingCard = ({tableBooking, showActions: _showActions = true}: Prop
   const parsedDate = dayjs(+tableBooking.date);
 
   const showActions =
-    tableBooking.tableBookingStatus === TableBookingStatus.WAITING_FOR_CONFIRMATION && _showActions;
+    tableBooking.tableBookingStatus === TableBooking_tableBookingStatus.WAITING_FOR_CONFIRMATION &&
+    _showActions;
 
   return (
     <HStack

@@ -3,7 +3,7 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
-import {TableBooking, TableBookingStatus, User} from '@prisma/client';
+import {TableBooking, TableBooking_tableBookingStatus, User} from '@prisma/client';
 
 type Result = Omit<TableBooking, 'userId'> & {user: User};
 
@@ -17,7 +17,7 @@ export const cancelTableBooking = withAuthentication({
       id,
     },
     data: {
-      tableBookingStatus: TableBookingStatus.CANCELLED,
+      tableBookingStatus: TableBooking_tableBookingStatus.CANCELLED,
     },
     include: {
       user: true, // Include the associated user data

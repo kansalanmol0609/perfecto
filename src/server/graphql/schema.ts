@@ -8,7 +8,7 @@ export const typeDefs = `#graphql
     createdAt: String
   }
 
-  enum FoodCategory {
+  enum Food_category {
     BREAKFAST
     LUNCH
     DINNER
@@ -16,7 +16,7 @@ export const typeDefs = `#graphql
     DRINK
   }
 
-  enum OrderStatus {
+  enum Order_status {
   PREPARING
   OUT_FOR_DELIVERY
   DELIVERED
@@ -37,7 +37,7 @@ export const typeDefs = `#graphql
     isVeg: Boolean!
     inStock: Boolean!
     price: Price!
-    category: FoodCategory!
+    category: Food_category!
     createdAt: String!
     updatedAt: String!
     userId: String!
@@ -53,7 +53,7 @@ export const typeDefs = `#graphql
 
   type OrderDTO{
     id: String!
-    status:    OrderStatus
+    status:    Order_status
     createdAt: String!
     updatedAt: String!
     userId: String!
@@ -68,7 +68,7 @@ export const typeDefs = `#graphql
 
   type Order{
     id: String!
-    status:    OrderStatus
+    status:    Order_status
     createdAt: String!
     updatedAt: String!
     user: User!
@@ -77,7 +77,7 @@ export const typeDefs = `#graphql
     items: [OrderItem]!
   }
 
-  enum TableBookingStatus {
+  enum TableBooking_tableBookingStatus {
     WAITING_FOR_CONFIRMATION
     CANCELLED
     CONFIRMED
@@ -120,7 +120,7 @@ export const typeDefs = `#graphql
     createdAt: String!
     updatedAt: String!
     user: User!
-    tableBookingStatus: TableBookingStatus!
+    tableBookingStatus: TableBooking_tableBookingStatus!
   }
 
   type NewsLetterSubscriber {
@@ -201,7 +201,7 @@ export const typeDefs = `#graphql
     isVeg: Boolean!
     inStock: Boolean!
     price: PriceInput!
-    category: FoodCategory!
+    category: Food_category!
   }
 
   input UpdateFoodItemInput {
@@ -212,7 +212,7 @@ export const typeDefs = `#graphql
     isVeg: Boolean!
     inStock: Boolean!
     price: PriceInput!
-    category: FoodCategory!
+    category: Food_category!
   }
 
   input CreateTableBookingInput {

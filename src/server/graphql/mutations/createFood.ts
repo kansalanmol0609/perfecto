@@ -3,7 +3,7 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
-import {Food, FoodCategory} from '@prisma/client';
+import {Food, Food_category} from '@prisma/client';
 
 type CreateFoodInput = {
   name: string;
@@ -16,7 +16,7 @@ type CreateFoodInput = {
     currency: string;
     precision?: string;
   };
-  category: FoodCategory;
+  category: Food_category;
 };
 
 export const createFood = withAuthentication({

@@ -3,7 +3,7 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
-import {TableBookingStatus} from '@prisma/client';
+import {TableBooking_tableBookingStatus} from '@prisma/client';
 
 enum BookingType {
   UPCOMING = 'UPCOMING',
@@ -21,7 +21,7 @@ export const fetchTableBookings = withAuthentication({
     return await ctx.prisma.tableBooking.findMany({
       where: {
         tableBookingStatus: {
-          equals: TableBookingStatus.CONFIRMED,
+          equals: TableBooking_tableBookingStatus.CONFIRMED,
         },
         date: {
           gte: currentDateTime,
@@ -40,7 +40,7 @@ export const fetchTableBookings = withAuthentication({
     return await ctx.prisma.tableBooking.findMany({
       where: {
         tableBookingStatus: {
-          equals: TableBookingStatus.WAITING_FOR_CONFIRMATION,
+          equals: TableBooking_tableBookingStatus.WAITING_FOR_CONFIRMATION,
         },
         date: {
           gte: currentDateTime,
@@ -59,7 +59,7 @@ export const fetchTableBookings = withAuthentication({
     return await ctx.prisma.tableBooking.findMany({
       where: {
         tableBookingStatus: {
-          equals: TableBookingStatus.CONFIRMED,
+          equals: TableBooking_tableBookingStatus.CONFIRMED,
         },
         date: {
           lt: currentDateTime,
@@ -78,7 +78,7 @@ export const fetchTableBookings = withAuthentication({
     return await ctx.prisma.tableBooking.findMany({
       where: {
         tableBookingStatus: {
-          equals: TableBookingStatus.CANCELLED,
+          equals: TableBooking_tableBookingStatus.CANCELLED,
         },
       },
       include: {

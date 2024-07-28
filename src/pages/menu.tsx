@@ -24,7 +24,7 @@ import FoodItemCard from '@/components/itemCard/variants/Customer';
 import {withAuthentication, ROUTE_TYPE} from '@/decorators/withAuthentication';
 
 //types
-import {Food, FoodCategory} from '@prisma/client';
+import {Food, Food_category} from '@prisma/client';
 
 const ANIMATION_VARIANTS = {
   initial: {opacity: 0, y: 20},
@@ -94,7 +94,7 @@ const MenuPageBody = withAuthentication({
                   gap={4}
                 >
                   {data?.readFoodItems
-                    .filter((foodItem) => foodItem.category === FoodCategory.BREAKFAST)
+                    .filter((foodItem) => foodItem.category === Food_category.BREAKFAST)
                     .map((foodItem) => (
                       <FoodItemCard key={foodItem.id} item={foodItem} />
                     ))}
@@ -116,7 +116,7 @@ const MenuPageBody = withAuthentication({
                   gap={4}
                 >
                   {data?.readFoodItems
-                    .filter((foodItem) => foodItem.category === FoodCategory.LUNCH)
+                    .filter((foodItem) => foodItem.category === Food_category.LUNCH)
                     .map((foodItem) => (
                       <FoodItemCard key={foodItem.id} item={foodItem} />
                     ))}
@@ -138,7 +138,7 @@ const MenuPageBody = withAuthentication({
                   gap={4}
                 >
                   {data?.readFoodItems
-                    .filter((foodItem) => foodItem.category === FoodCategory.DINNER)
+                    .filter((foodItem) => foodItem.category === Food_category.DINNER)
                     .map((foodItem) => (
                       <FoodItemCard key={foodItem.id} item={foodItem} />
                     ))}
@@ -160,7 +160,7 @@ const MenuPageBody = withAuthentication({
                   gap={4}
                 >
                   {data?.readFoodItems
-                    .filter((foodItem) => foodItem.category === FoodCategory.DRINK)
+                    .filter((foodItem) => foodItem.category === Food_category.DRINK)
                     .map((foodItem) => (
                       <FoodItemCard key={foodItem.id} item={foodItem} />
                     ))}
@@ -182,7 +182,7 @@ const MenuPageBody = withAuthentication({
                   gap={4}
                 >
                   {data?.readFoodItems
-                    .filter((foodItem) => foodItem.category === FoodCategory.DESSERT)
+                    .filter((foodItem) => foodItem.category === Food_category.DESSERT)
                     .map((foodItem) => (
                       <FoodItemCard key={foodItem.id} item={foodItem} />
                     ))}

@@ -1,6 +1,6 @@
 //libs
 import {gql, useMutation} from '@apollo/client';
-import {FoodCategory, TableBooking} from '@prisma/client';
+import {Food_category, TableBooking} from '@prisma/client';
 
 //hooks
 import {useToast} from '@chakra-ui/react';

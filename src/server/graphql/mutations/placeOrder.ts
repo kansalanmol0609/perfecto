@@ -3,7 +3,7 @@ import {API_TYPE, withAuthentication} from '@/server/decorators/withAuthenticati
 
 //types
 import {GraphQLContext} from '../context';
-import {Order, OrderStatus} from '@prisma/client';
+import {Order, Order_status} from '@prisma/client';
 
 type PlaceOrderInput = {
   addressId: string;
@@ -22,7 +22,7 @@ export const placeOrder = withAuthentication({
   const [order] = await ctx.prisma.$transaction([
     ctx.prisma.order.create({
       data: {
-        status: OrderStatus.PREPARING,
+        status: Order_status.PREPARING,
         user: {
           connect: {
             id: session!.user!.id,

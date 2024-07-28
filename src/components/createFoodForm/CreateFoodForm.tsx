@@ -14,7 +14,7 @@ import {
 } from 'formik-chakra-ui';
 
 //types
-import {FoodCategory} from '@prisma/client';
+import {Food_category} from '@prisma/client';
 
 export enum FORM_KEYS {
   NAME = 'name',
@@ -35,7 +35,7 @@ export type FormValues = {
   [FORM_KEYS.IN_STOCK]: boolean;
   [FORM_KEYS.PRICE_AMOUNT]: string;
   [FORM_KEYS.PRICE_CURRENCY]: string;
-  [FORM_KEYS.CATEGORY]: FoodCategory;
+  [FORM_KEYS.CATEGORY]: Food_category;
 };
 
 const INITIAL_VALUES: FormValues = {
@@ -46,7 +46,7 @@ const INITIAL_VALUES: FormValues = {
   [FORM_KEYS.IN_STOCK]: false,
   [FORM_KEYS.PRICE_AMOUNT]: '',
   [FORM_KEYS.PRICE_CURRENCY]: '',
-  [FORM_KEYS.CATEGORY]: FoodCategory.BREAKFAST,
+  [FORM_KEYS.CATEGORY]: Food_category.BREAKFAST,
 };
 
 const VALIDATION_SCHEMA = Yup.object({

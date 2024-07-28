@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Feedback {
@@ -92,7 +92,7 @@ model User {
   image         String?
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  role          Role
+  role          Role           @default(USER)
   addresses     Address[]
   accounts      Account[] //Auth
   sessions      Session[] //Auth
@@ -103,7 +103,7 @@ model User {
   cart          Cart?
 }
 
-enum OrderStatus {
+enum Order_status {
   PREPARING
   OUT_FOR_DELIVERY
   DELIVERED
@@ -123,17 +123,17 @@ model OrderItem {
 }
 
 model Order {
-  id        String      @id @default(cuid())
-  status    OrderStatus
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  user      User        @relation(fields: [userId], references: [id])
+  id        String       @id @default(cuid())
+  status    Order_status @default(PREPARING)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  user      User         @relation(fields: [userId], references: [id])
   userId    String
-  address   Address     @relation(fields: [addressId], references: [id])
+  address   Address      @relation(fields: [addressId], references: [id])
   addressId String
   items     OrderItem[]
-  rating    Rating?     @relation(fields: [ratingId], references: [id])
-  ratingId  String?     @unique
+  rating    Rating?      @relation(fields: [ratingId], references: [id])
+  ratingId  String?      @unique
 
   @@index([userId])
   @@index([addressId])
@@ -173,7 +173,7 @@ model Rating {
   @@index([orderId])
 }
 
-enum FoodCategory {
+enum Food_category {
   BREAKFAST
   LUNCH
   DINNER
@@ -182,18 +182,18 @@ enum FoodCategory {
 }
 
 model Food {
-  id          String       @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   description String
   pictures    String
   isVeg       Boolean //MenuItem
   inStock     Boolean
-  isDeleted   Boolean      @default(false)
+  isDeleted   Boolean       @default(false)
   price       Json // {amount: string; currency: string}
-  category    FoodCategory
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  user        User         @relation(fields: [userId], references: [id])
+  category    Food_category @default(BREAKFAST)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  user        User          @relation(fields: [userId], references: [id])
   userId      String
   orderItem   OrderItem[]
   cartItem    CartItem[]
@@ -201,20 +201,20 @@ model Food {
   @@index([userId])
 }
 
-enum TableBookingStatus {
+enum TableBooking_tableBookingStatus {
   WAITING_FOR_CONFIRMATION
   CANCELLED
   CONFIRMED
 }
 
 model TableBooking {
-  id                 String             @id @default(cuid())
+  id                 String                          @id @default(cuid())
   date               DateTime
   numberOfPeople     Int
-  tableBookingStatus TableBookingStatus
-  createdAt          DateTime           @default(now())
-  updatedAt          DateTime           @updatedAt
-  user               User               @relation(fields: [userId], references: [id])
+  tableBookingStatus TableBooking_tableBookingStatus @default(WAITING_FOR_CONFIRMATION)
+  createdAt          DateTime                        @default(now())
+  updatedAt          DateTime                        @updatedAt
+  user               User                            @relation(fields: [userId], references: [id])
   userId             String
 
   @@index([userId])
